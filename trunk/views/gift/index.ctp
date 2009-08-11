@@ -1,6 +1,6 @@
 <div id="head">
 	<div id="logo">
-		<a href="/googift/files"><?php echo $html->image('logo.png'); ?></a>
+		<a href="/googift/"><?php echo $html->image('logo.png'); ?></a>
 	</div>
 
 	<div id="searchMain">
@@ -38,5 +38,4 @@ foreach($gifts as $gift){
 }
 //debug($gifts);
 ?>
-</table>
 <br>

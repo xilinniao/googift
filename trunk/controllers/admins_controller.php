@@ -22,5 +22,7 @@ class AdminsController extends AppController {
 			$aro->save($data);
 		}    //这儿放置action的其它逻辑...
 	}
+	
+	function test(){}
 }
 ?>

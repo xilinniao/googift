@@ -1,10 +1,3 @@
-<?php
-$navigator_array = array (
-	'首页'=>'/files'
-);
-$current = '建言献策';
-	require('views/layouts/navigator.ctp');
-?>
 <table id="forumTable">
 	<?php 
 	if(sizeof($adviceItems) == 0) {

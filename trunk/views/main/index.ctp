@@ -5,7 +5,7 @@
 <div id="main">
 	<div id="formText">在此输入关键词组合（例如：生日 妻子 29岁）</div>
 	<div id="form">
-		<form method="post" action="gifts/">
+		<form method="post" action="/googift/gifts/">
 			<input id="textInput" name="data[Gift][keywords]" type="text"/>
 			<input type="submit" value="googift搜索"/>
 		</form>
