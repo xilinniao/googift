@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<script type="text/javascript">
+
+</script>
+<form action="register" method="post" onsubmit="checkTable()">
+<table align="center">
+<tr><td colspan="2"><font size="14"><b>用户注册</b></font></td></tr>
+<tr><td>用户名：</td><td><input type="text" name="data[User][username]" maxlength="50"><font color="red"><b>*</b></font></td></tr>
+<tr><td>密码：</td><td><input type="password" name="data[User][password]" maxlength="50"><font color="red"><b>*</b></font></td></tr>
+<tr><td>确认密码：</td><td><input type="password" name="data[User][password1]" maxlength="50"><font color="red"><b>*</b></font></td></tr>
+<tr><td>身份：</td><td><select id="roleSelect" name="data[User][role]" onchange="roleSelectChanges()"><option value="personal">个人用户</option><option value="enterprise">企业用户</option></select><font color="red"><b>*</b></font></td></tr>
+<tr><td>性别：</td><td><select id="genderSelect" name="data[User][gender]"><option value="" selected="selected">-请选择-</option><option value="男">男</option><option value="女">女</option></select><font color="red"><b>*</b></font></td></tr>
+<tr style="display:none"><td>出生日期：</td><td></td></tr>
+<tr><td>电子邮件：</td><td><input type="text" name="data[User][email]" maxlength="50"><font color="red"><b>*</b></font></td></tr>
+<tr><td colspan="2"><input type="submit" value="注册"></td></tr>
+</table>
+
+</form>
+</body>
+</html>
