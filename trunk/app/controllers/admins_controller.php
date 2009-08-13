@@ -4,7 +4,8 @@ class AdminsController extends AppController {
 	var $components = array('Acl');
 	
 	function index() {
-		$this->layout = "admin";
+		$this->addToNavigatorItem(1, '管理', '/admins');
+//		$this->layout = "admin";
 	}
 	
 	function addARO(){    

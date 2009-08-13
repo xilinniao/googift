@@ -26,7 +26,7 @@
                            array('className'  => 'User',   
                                  'conditions' => array('User.role'=>'enterprise'),   
                                  'order'      => '',   
-                                 'foreignKey' => 'user_id'  
+                                 'foreignKey' => ''  
                            )   
                      );   
  }

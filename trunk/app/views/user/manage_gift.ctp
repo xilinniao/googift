@@ -2,6 +2,7 @@
 <ul>
 <li><?php echo $html->link('添加商品', 'addGift');?></li>
 <li>按供应商过滤：<select id="providerSelect" name="providerSelect">
+<option value="">-请选择供应商-</option>
 	<?php foreach ($providers as $p){?>
 	<option value="<?php echo $p['id']; ?>"><?php echo $p['name']; ?></option>
 	<?php }?>
