@@ -57,9 +57,9 @@ class UsersController extends AppController {
 		$this->redirect('/main');
 	}
 
-	function showProvidersForUser() {
+	function enterpriseManagement() {
 		$user = $this->getLoginUserFromSession();
-		$this->addToNavigatorItem(1, '供应商管理', '/users/showProvidersForUser');
+		$this->addToNavigatorItem(1, '供应商管理', '/users/enterpriseManagement');
 		$result = $this->User->find('first', array('conditions'=>array('User.id'=>$user['id'])));
 		$this->set('providers', $result['Provider']);
 	}
@@ -67,13 +67,10 @@ class UsersController extends AppController {
 
 	function addProvider() {
 		$this->addToNavigatorItem(2, '添加供应商', '/users/addProvider');
-		$provider_id = $this->params['url']['id'];
 		$user = $this->getLoginUserFromSession();
-		if($provider_id) {
-			$result = $this->User->find('first', array('conditions'=>array('User.id'=>$user['id'], 'Provider.id'=>$provider_id)));
-			$this->set('provider', $result['Provider']);
-		}
+		$this->set('user_id', $user['id']);
 	}
+	
 
 	function manageGift() {
 		$user = $this->getLoginUserFromSession();

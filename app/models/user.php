@@ -5,9 +5,9 @@ class User extends AppModel {
 	var $hasMany = array('Provider' =>   
                          array('className'     => 'Provider',   
                                'conditions'    => '',
-                               'order'         => 'Provider.modified DESC',   
+                               'order'         => 'Provider.modified ASC',   
                                'limit'         => '',   
-                               'foreignKey'    => '',   
+                               'foreignKey'    => 'user_id',   
                                'dependent'     => true,   
                                'exclusive'     => false,   
                                'finderQuery'   => ''  

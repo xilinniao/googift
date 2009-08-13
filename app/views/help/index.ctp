@@ -1,12 +1,3 @@
-<?php
-$navigator_array = array (
-	'首页'=>'/files'
-);
-$current = '使用指南';
-	require('views/layouts/navigator.ctp');
-	
-?>
-
 <div class="section-left">
 	<div class="section">
 		<div class="title"><?php echo $html->link('礼仪之邦', 'showAllInCategory?category=GiftChina'); ?></div>

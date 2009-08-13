@@ -12,9 +12,22 @@ class ProvidersController extends AppController {
 		}
 		else
 		$this->Session->setFlash('添加失败！');
-		$this->redirect('addProvider?user_id=' . $this->data['Provider']['user_id']);
+		$this->redirect($this->getLastStoredLink());
+	}
+	
+	function updateProvider() {
+		$provider_id = $this->params['url']['id'];
+		$this->addToNavigatorItem(2, '修改供应商信息', '/users/updateProvider?id=' . $provider_id);
+		if($provider_id) {
+			$result = $this->Provider->find('first', array('conditions'=>array('Provider.id'=>$provider_id)));
+			$this->set('provider', $result['Provider']);
+		}
 	}
 
+	function update() {
+		$this->Provider->save($this->data);
+		$this->redirect($this->getLastStoredLink());
+	}
 
 	function showGiftsOfProvider() {
 		$pid = $this->params['form']['providerSelect'];
