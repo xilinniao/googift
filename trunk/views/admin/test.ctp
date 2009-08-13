@@ -1,1 +1,0 @@
-<div id="in_place_editor_id">Text To Edit</div><?php echo $ajax->editor(     "in_place_editor_id",     array(         'controller' => 'Posts',         'action' => 'update_title',        $id    ),     array());?>
