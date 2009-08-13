@@ -34,7 +34,7 @@ class GiftKnowledgesController extends AppController {
         $category = $this->params['url']['category'];
         $id = $this->params['url']['id'];
         $item = $this->GiftKnowledge->find('first', array('conditions' => array('GiftKnowledge.id' => $id)));
-        $this->addToNavigatorItem(3, $item['GiftKnowledge']['title'], '/gift_knowledges/showOneItem?category=' . $category . 'id=' . $id);
+        $this->addToNavigatorItem(null, $item['GiftKnowledge']['title'], '/gift_knowledges/showOneItem?category=' . $category . 'id=' . $id);
         $this->set('item', $item);
     }
 
