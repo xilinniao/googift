@@ -3,6 +3,11 @@ class SearchgiftComponent extends Object {
 	var $components = array (
 		'Facet'
 	);
+	
+	function getFacetArray() {
+		return $this->Facet->getFacetArray();
+	}
+	
 	function search($allGifts, $keyword_array = null) {
 		$matched = Array ();
 		$index = 0;

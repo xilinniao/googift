@@ -1,7 +1,64 @@
 <?php
+require_once 'app' . DS . 'models' . DS . 'facet.php';
+require_once 'app' . DS . 'models' . DS . 'keyword.php';
 abstract class facetbase extends Object {
-	abstract function getWeight();
-	abstract function isCategorical();
+	/**
+	 * array (
+	 * 		'day' => array(
+	 * 					'facet'=>array ('id'=>'1', 'name'=>'day', 'isCategorical'=>'1', 'weight'=>'0.7'),
+	 * 					'keywords' => array (
+	 * 										'生日'=>array(),
+	 * 										'七夕'=>array('中国情人节'),
+	 * 										...
+	 * 									)
+	 * 					)
+	 * 		...
+	 * 	)
+	 * @var unknown_type
+	 */
+	static $facet_array;
+
+	static function getFacetArray() {
+		if(!self::$facet_array) {
+			self::$facet_array = array();
+			
+			$facet =& new Facet();
+			$facetResult = $facet->find('all');
+			foreach ($facetResult as $item) {
+				$facetName = $item['Facet']['name'];
+				$value_array = array();
+				$keyword_array = array();
+				$value_array['facet'] = $item['Facet'];
+				foreach ($item['Keyword'] as $keyword) {
+					$keyword_array[$keyword['content']] = array();
+				}
+				$value_array['keywords'] = $keyword_array;
+				self::$facet_array[$facetName] = $value_array;
+			}
+			
+			$keyword =& new Keyword();
+			$keywordResult = $keyword->find('all', array('conditions'=>array('isPrimary'=>'0'), 'fields'=>array('content DISTINCT','primary', 'facet_id')));
+			foreach ($keywordResult as $item) {
+				$primary_id = $item['Keyword']['primary'];
+				$primarySynonym = $keyword->find('first', array('conditions'=>array('Keyword.id'=>$primary_id)));
+				$relateFacet = $facet->find('first', array('conditions'=>array('Facet.id'=>$item['Keyword']['facet_id'])));
+				array_push(self::$facet_array[$relateFacet['Facet']['name']]['keywords'][$primarySynonym['Keyword']['content']], $item['Keyword']['content']);
+			}
+		}
+		return self::$facet_array;
+	}
+
+	abstract function getName();
+	/**
+	 * array (
+	 * 		'day' => '生日',
+	 * 		'acceptor'=>'丈夫',
+	 * 		'age' => '25~60',
+	 * 		'gender' => '男'
+	 * )
+	 * @param $vector
+	 */
+	abstract function process($vector);
 	function getCategoriesArray() {
 		return null;
 	}
@@ -17,19 +74,19 @@ abstract class facetbase extends Object {
 			return $this->getContinuousFacetPlus($plusKeys, $keywords);
 		}
 	}
-	
+
 	function getCategoricalFacetPlus($plusKeys, $keywords) {
 		if (!$keywords)
-			return 0;
+		return 0;
 		$cate_array = explode("/", $plusKeys);
 		if (empty ($cate_array))
-			return 0;
+		return 0;
 		$categories_array = $this->getCategoriesArray();
 		foreach ($cate_array as $cate) {
 			$words = $categories_array[$cate];
 
 			if (!$words || empty ($words))
-				continue;
+			continue;
 			foreach ($words as $word) {
 				if (mb_substr_count(" " . $keywords . " ", " " . $word . " ") > 0) {
 					return $this->getWeight();
@@ -38,16 +95,16 @@ abstract class facetbase extends Object {
 		}
 		return 0;
 	}
-	
+
 	function getContinuousFacetPlus($plusKeys, $keywords) {
 		if (!$keywords)
-			return 0;
+		return 0;
 		$patterns = $this->getMatchPatterns();
 		if(!$patterns) return 0;
 		foreach ($patterns as $pattern) {
 			if (preg_match($pattern, $keywords, $matches)) {
 				$age_i = $matches[1];
-				
+
 				$startKey = substr($plusKeys, 0, 1);
 				$age_p = substr($plusKeys, 1);
 				if (($startKey === '>' && $age_i >= $age_p) || ($startKey === '<' && $age_i <= $age_p) || ($startKey === '=' && $age_i = $age_p)) {
@@ -58,7 +115,7 @@ abstract class facetbase extends Object {
 						$start = substr($plusKeys, 0, $index);
 						$end = substr($plusKeys, $index +1);
 						if ($age_i > $start && $age_i < $end)
-							return $this->getWeight();
+						return $this->getWeight();
 					}
 				}
 			}

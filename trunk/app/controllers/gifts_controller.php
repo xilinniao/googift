@@ -4,6 +4,11 @@ class GiftsController extends AppController {
 
 	var $components = array('Searchgift');
 
+	function test() {
+		$allFacets = $this->Searchgift->getFacetArray();
+		print_r($allFacets);
+	}
+	
 	function index(){
 		$keyword_str = $this->data['Gift']['keywords'];
 		$allGift = $this->Gift->find('all');
