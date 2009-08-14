@@ -1,25 +1,25 @@
--- phpMyAdmin SQL Dump
--- version 3.1.3.1
--- http://www.phpmyadmin.net
---
--- 主机: localhost
--- 生成日期: 2008 年 08 月 02 日 15:07
--- 服务器版本: 5.1.33
--- PHP 版本: 5.2.9-2
+/*
+SQLyog Community Edition- MySQL GUI v7.02 
+MySQL - 5.1.33-community-log : Database - googift
+*********************************************************************
+*/
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+/*!40101 SET NAMES utf8 */;
 
---
--- 数据库: `googift`
---
+/*!40101 SET SQL_MODE=''*/;
 
--- --------------------------------------------------------
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
---
--- 表的结构 `acos`
---
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`googift` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
-CREATE TABLE IF NOT EXISTS `acos` (
+USE `googift`;
+
+/*Table structure for table `acos` */
+
+DROP TABLE IF EXISTS `acos`;
+
+CREATE TABLE `acos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -28,44 +28,32 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `acos`
---
+/*Data for the table `acos` */
 
+/*Table structure for table `advices` */
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `advices`;
 
---
--- 表的结构 `advices`
---
-
-CREATE TABLE IF NOT EXISTS `advices` (
+CREATE TABLE `advices` (
   `id` smallint(6) NOT NULL AUTO_INCREMENT,
   `sender` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=30 ;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `advices`
---
+/*Data for the table `advices` */
 
-INSERT INTO `advices` (`id`, `sender`, `content`, `date`) VALUES
-(27, 'kevin', 'zheshigeceshizheshigeceshizheshigeceshizheshigeceshi\r\n', '2009-07-24 15:42:11'),
-(28, '蛋蛋', '蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅蛋蛋长的很帅。', '2009-07-24 15:55:52'),
-(29, '蛋蛋', '<b>我叫蛋蛋</b>\r\n<ul>\r\n<li>蛋蛋长的很帅</li>\r\n<li>蛋蛋长的很帅</li>\r\n<li>蛋蛋长的很帅</li>\r\n<li>蛋蛋长的很帅</li>\r\n</ul>', '2009-07-24 15:56:48');
+insert  into `advices`(`id`,`sender`,`content`,`date`) values (27,'kevin','zheshigeceshizheshigeceshizheshigeceshizheshigeceshi\r\n','2009-07-24 15:42:11'),(28,'è›‹è›‹','这是第一个建议','2009-07-24 15:55:52'),(29,'è›‹è›‹','这是第2个Provider','2009-07-24 15:56:48'),(30,'中国人','阿隆索的积分拉萨发','2009-08-12 11:15:30');
 
--- --------------------------------------------------------
+/*Table structure for table `aros` */
 
---
--- 表的结构 `aros`
---
+DROP TABLE IF EXISTS `aros`;
 
-CREATE TABLE IF NOT EXISTS `aros` (
+CREATE TABLE `aros` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
   `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
@@ -74,20 +62,15 @@ CREATE TABLE IF NOT EXISTS `aros` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `aros`
---
+/*Data for the table `aros` */
 
+/*Table structure for table `aros_acos` */
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `aros_acos`;
 
---
--- 表的结构 `aros_acos`
---
-
-CREATE TABLE IF NOT EXISTS `aros_acos` (
+CREATE TABLE `aros_acos` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `aro_id` int(10) unsigned NOT NULL,
   `aco_id` int(10) unsigned NOT NULL,
@@ -96,20 +79,48 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_update` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   `_delete` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `aros_acos`
---
+/*Data for the table `aros_acos` */
 
+/*Table structure for table `facets` */
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `facets`;
 
---
--- 表的结构 `gifts`
---
+CREATE TABLE `facets` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `isCategorical` tinyint(1) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `gifts` (
+/*Data for the table `facets` */
+
+insert  into `facets`(`id`,`name`,`isCategorical`) values (1,'day',1),(2,'acceptor',1),(3,'age',0),(4,'gender',1);
+
+/*Table structure for table `gift_knowledges` */
+
+DROP TABLE IF EXISTS `gift_knowledges`;
+
+CREATE TABLE `gift_knowledges` (
+  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
+  `category` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'other',
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `content` text COLLATE utf8_unicode_ci,
+  `create_date` date DEFAULT NULL,
+  `update_date` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `gift_knowledges` */
+
+insert  into `gift_knowledges`(`id`,`category`,`title`,`content`,`create_date`,`update_date`) values (1,'GiftChina','中华名族是礼仪之邦','中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦。','2009-07-21','2009-07-21'),(2,'GiftChina','中华名族是礼仪之邦','中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦。','2009-07-21','2009-07-21');
+
+/*Table structure for table `gifts` */
+
+DROP TABLE IF EXISTS `gifts`;
+
+CREATE TABLE `gifts` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `provider_id` int(11) DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -120,71 +131,50 @@ CREATE TABLE IF NOT EXISTS `gifts` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `gifts`
---
+/*Data for the table `gifts` */
 
-INSERT INTO `gifts` (`id`, `provider_id`, `name`, `price`, `image_url`, `keywords`, `description`, `created`, `modified`) VALUES
-(4, 1, 'a second', '3.00', NULL, 'day{Birthday/Christmas},age{<40}', '中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民中国人民', NULL, NULL),
-(3, 1, 'æ–°ç¤¼å“', '1.20', '200906250929237625.jpg', 'day{SpringFestival},age{>35}', NULL, '2009-06-25 09:07:43', '2009-06-25 09:07:43'),
-(6, 1, 'dandan', '11.00', '200906250929237625.jpg', NULL, NULL, '2009-07-24 07:57:43', '2009-07-24 07:57:43');
+insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`description`,`created`,`modified`) values (16,NULL,'','0.00',NULL,'ss',NULL,'2009-08-05 09:28:50','2009-08-05 09:28:50');
 
--- --------------------------------------------------------
+/*Table structure for table `helps` */
 
---
--- 表的结构 `gift_knowledges`
---
+DROP TABLE IF EXISTS `helps`;
 
-CREATE TABLE IF NOT EXISTS `gift_knowledges` (
-  `id` smallint(5) unsigned NOT NULL AUTO_INCREMENT,
-  `category` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'other',
-  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `content` text COLLATE utf8_unicode_ci,
-  `create_date` date DEFAULT NULL,
-  `update_date` date DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
-
---
--- 导出表中的数据 `gift_knowledges`
---
-
-INSERT INTO `gift_knowledges` (`id`, `category`, `title`, `content`, `create_date`, `update_date`) VALUES
-(1, 'GiftChina', '中华名族是礼仪之邦', '中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦。', '2009-07-21', '2009-07-21'),
-(2, 'GiftChina', '中华名族是礼仪之邦', '中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦，中华名族是礼仪之邦。', '2009-07-21', '2009-07-21');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `helps`
---
-
-CREATE TABLE IF NOT EXISTS `helps` (
+CREATE TABLE `helps` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `content` text COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `helps`
---
+/*Data for the table `helps` */
 
-INSERT INTO `helps` (`id`, `title`, `content`, `category`) VALUES
-(5, '啊撒旦法', '<p>啊撒旦法受到</p>', '啊撒旦法'),
-(3, '如何使用高级搜索', '<p>高级搜索是这样使用的！</p>', '使用帮助'),
-(4, '啊撒旦法', '<p>啊撒旦法上的发生</p>', '啊撒旦法');
+insert  into `helps`(`id`,`title`,`content`,`category`) values (5,'啊撒旦法','<p>啊撒旦法受到</p>','啊撒旦法'),(3,'如何使用高级搜索','<p>高级搜索是这样使用的！</p>','使用帮助'),(4,'啊撒旦法','<p>啊撒旦法上的发生</p>','啊撒旦法');
 
--- --------------------------------------------------------
+/*Table structure for table `keywords` */
 
---
--- 表的结构 `providers`
---
+DROP TABLE IF EXISTS `keywords`;
 
-CREATE TABLE IF NOT EXISTS `providers` (
+CREATE TABLE `keywords` (
+  `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `content` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `isPrimary` tinyint(1) DEFAULT NULL,
+  `primary` mediumint(9) DEFAULT NULL,
+  `facet_id` mediumint(9) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=53 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `keywords` */
+
+insert  into `keywords`(`id`,`content`,`isPrimary`,`primary`,`facet_id`) values (1,'丈夫',1,NULL,2),(2,'老公',0,1,2),(3,'妻子',1,NULL,2),(4,'老婆',0,3,2),(5,'男朋友',1,NULL,2),(6,'男友',0,5,2),(7,'女朋友',1,NULL,2),(8,'女友',0,7,2),(9,'好朋友',1,NULL,2),(10,'好友',0,9,2),(11,'死党',0,9,2),(12,'普通朋友',1,NULL,2),(13,'朋友',0,12,2),(14,'同事',1,NULL,2),(15,'同僚',0,14,2),(16,'同学',1,NULL,2),(17,'同校',0,16,2),(18,'校友',0,16,2),(19,'领导',1,NULL,2),(20,'经理',0,19,2),(21,'主任',0,19,2),(22,'manager',0,19,2),(23,'leader',0,19,2),(24,'父亲',1,NULL,2),(25,'爸爸',0,24,2),(26,'爸',0,24,2),(27,'母亲',1,NULL,2),(28,'妈妈',0,27,2),(29,'妈',0,27,2),(30,'岳父',1,NULL,2),(31,'丈人',0,30,2),(32,'老丈人',0,30,2),(33,'外父',0,30,2),(34,'岳母',1,NULL,2),(35,'丈母娘',0,34,2),(36,'外母',0,34,2),(37,'儿子',1,NULL,2),(38,'女儿',1,NULL,2),(39,'父辈',1,NULL,2),(40,'舅舅',0,39,2),(41,'叔叔',0,39,2),(42,'伯父',0,39,2),(43,'姨父',0,39,2),(44,'姑父',0,39,2),(45,'母辈',1,NULL,2),(46,'姨姨',0,45,2),(47,'阿姨',0,45,2),(48,'婶婶',0,45,2),(49,'舅妈',0,45,2),(50,'姑姑',0,45,2),(51,'妗母',0,45,2),(52,'妗子',0,45,2);
+
+/*Table structure for table `providers` */
+
+DROP TABLE IF EXISTS `providers`;
+
+CREATE TABLE `providers` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `full_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -195,23 +185,15 @@ CREATE TABLE IF NOT EXISTS `providers` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `providers`
---
+/*Data for the table `providers` */
 
-INSERT INTO `providers` (`id`, `name`, `full_name`, `introduction`, `phone`, `address`, `user_id`, `created`, `modified`) VALUES
-(1, '米奇', '西安米旗食品有限公司', '<p><span class="Apple-style-span" style="word-spacing: 0px; font: 16px simsun; text-transform: none; color: rgb(0,0,0); text-indent: 0px; white-space: normal; letter-spacing: normal; border-collapse: separate; orphans: 2; widows: 2; webkit-border-horizontal-spacing: 0px; webkit-border-vertical-spacing: 0px; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">\r\n<table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<table height="224" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n            <td valign="top" width="27%" rowspan="3"><img height="210" alt="2" width="180" src="http://localhost/image/i1_25.gif" /></td>\r\n            <td valign="middle" width="73%" height="70"><span class="STYLE14" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="Apple-converted-space">&nbsp;</span><span class="STYLE17" style="font-size: 12px; word-spacing: normal; color: rgb(138,71,53); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">米旗1994年创建。是一家以生产月饼、蛋糕、面包、中西式糕点、卤制品为主的全国连锁食品企业。从创立至今，米旗始终坚持以产品品质为前提的经营理念，不断致力于产品创新和对市场的准确把握，持续保持行业先锋地位。</span></span></td>\r\n        </tr>\r\n        <tr>\r\n            <td valign="middle" height="10">\r\n            <table height="1" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td bgcolor="#c9beb4" height="1">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td valign="middle" height="90"><span class="STYLE15" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="STYLE18" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">1996年，米旗开始区域市场和行业扩张，陆续在西安、哈尔滨、长春、大庆、北京、天津、沈阳、成都、杭州成立10家分公司和一家专业食品研究所，产品形成蛋糕、月饼、面包、中点、西点、营养快餐、制馅、冰淇淋、速冻食品、卤制品等十大品类体系，经营涉足焙烤、快餐、食品原料加工和冷饮五个行业，拥有员工近三千人，在中国北方市场设立400余家专卖店，产品辐射北部、东部、西部数十个大中城市，成长为全国知名品牌。</span></span></td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n            <td valign="top" align="left">\r\n            <table height="1" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td bgcolor="#c9beb4" height="1">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            <br />\r\n            <table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td width="50"><img height="38" alt="2" src="http://localhost/image/3_03.gif" width="85" /></td>\r\n                        <td align="center" width="100">&nbsp;</td>\r\n                        <td valign="bottom" width="548">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            <p class="STYLE13" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　年轻的米旗，一直保持稳健的发展步伐。米旗西安、哈尔滨两大现代工业园于2002、2004年相继建立，采用恒温、恒湿、防尘的现代化厂房，引进先进生产设备，包装区域更率先使用十万级净化系统。园区生产条件已达到国际标准，并通过ISO9001质量管理体系、HACCP食品安全管理体系认证。米旗严格按照体系要求，从上游供应商到生产、储运至销售服务进行细致、周密品质管理，确保产品安全、安心、优质。</p>\r\n            <p class="STYLE16" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="STYLE19" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">作为行业旗帜，米旗连续5年蝉联中国焙烤行业最高赛事蛋糕、月饼、面包团体和个人全部金奖，米旗月饼连续5年荣获中国&ldquo;国饼十佳&rdquo;称号。目前已有20余名技术人员先后获得&ldquo;全国技术能手&rdquo;称号。2006年，米旗人荣获了国家劳动部授予的&ldquo;全国五一劳动奖章&rdquo;，这是目前焙烤行业唯一通过技术比赛获得的殊荣。2006年9月，米旗月饼又获得&ldquo;中国名牌&rdquo;。</span></p>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n</span></p>', '86521888', '陕西省西安市新城区万寿北路', 0, '2009-07-30 09:02:38', '2009-07-30 09:02:38'),
-(2, '米奇', '西安米旗食品有限公司', '<p><span class="Apple-style-span" style="word-spacing: 0px; font: 16px simsun; text-transform: none; color: rgb(0,0,0); text-indent: 0px; white-space: normal; letter-spacing: normal; border-collapse: separate; orphans: 2; widows: 2; webkit-border-horizontal-spacing: 0px; webkit-border-vertical-spacing: 0px; webkit-text-decorations-in-effect: none; webkit-text-size-adjust: auto; webkit-text-stroke-width: 0px">\r\n<table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<table height="224" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n            <td valign="top" width="27%" rowspan="3"><img height="210" alt="2" width="180" src="http://localhost/image/i1_25.gif" /></td>\r\n            <td valign="middle" width="73%" height="70"><span class="STYLE14" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="Apple-converted-space">&nbsp;</span><span class="STYLE17" style="font-size: 12px; word-spacing: normal; color: rgb(138,71,53); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">米旗1994年创建。是一家以生产月饼、蛋糕、面包、中西式糕点、卤制品为主的全国连锁食品企业。从创立至今，米旗始终坚持以产品品质为前提的经营理念，不断致力于产品创新和对市场的准确把握，持续保持行业先锋地位。</span></span></td>\r\n        </tr>\r\n        <tr>\r\n            <td valign="middle" height="10">\r\n            <table height="1" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td bgcolor="#c9beb4" height="1">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            </td>\r\n        </tr>\r\n        <tr>\r\n            <td valign="middle" height="90"><span class="STYLE15" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="STYLE18" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">1996年，米旗开始区域市场和行业扩张，陆续在西安、哈尔滨、长春、大庆、北京、天津、沈阳、成都、杭州成立10家分公司和一家专业食品研究所，产品形成蛋糕、月饼、面包、中点、西点、营养快餐、制馅、冰淇淋、速冻食品、卤制品等十大品类体系，经营涉足焙烤、快餐、食品原料加工和冷饮五个行业，拥有员工近三千人，在中国北方市场设立400余家专卖店，产品辐射北部、东部、西部数十个大中城市，成长为全国知名品牌。</span></span></td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n<table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n    <tbody>\r\n        <tr>\r\n            <td valign="top" align="left">\r\n            <table height="1" cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td bgcolor="#c9beb4" height="1">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            <br />\r\n            <table cellspacing="0" cellpadding="0" width="100%" border="0">\r\n                <tbody>\r\n                    <tr>\r\n                        <td width="50"><img height="38" alt="2" width="85" src="http://localhost/image/3_03.gif" /></td>\r\n                        <td align="center" width="100">&nbsp;</td>\r\n                        <td valign="bottom" width="548">&nbsp;</td>\r\n                    </tr>\r\n                </tbody>\r\n            </table>\r\n            <p class="STYLE13" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　年轻的米旗，一直保持稳健的发展步伐。米旗西安、哈尔滨两大现代工业园于2002、2004年相继建立，采用恒温、恒湿、防尘的现代化厂房，引进先进生产设备，包装区域更率先使用十万级净化系统。园区生产条件已达到国际标准，并通过ISO9001质量管理体系、HACCP食品安全管理体系认证。米旗严格按照体系要求，从上游供应商到生产、储运至销售服务进行细致、周密品质管理，确保产品安全、安心、优质。</p>\r\n            <p class="STYLE16" style="font-size: 12px; word-spacing: normal; color: rgb(102,102,102); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px; text-align: justify">　　<span class="STYLE19" style="font-size: 12px; word-spacing: normal; color: rgb(105,62,33); line-height: 18px; font-style: normal; font-family: Arial, Helvetica, sans-serif; letter-spacing: 1px">作为行业旗帜，米旗连续5年蝉联中国焙烤行业最高赛事蛋糕、月饼、面包团体和个人全部金奖，米旗月饼连续5年荣获中国&ldquo;国饼十佳&rdquo;称号。目前已有20余名技术人员先后获得&ldquo;全国技术能手&rdquo;称号。2006年，米旗人荣获了国家劳动部授予的&ldquo;全国五一劳动奖章&rdquo;，这是目前焙烤行业唯一通过技术比赛获得的殊荣。2006年9月，米旗月饼又获得&ldquo;中国名牌&rdquo;。</span></p>\r\n            </td>\r\n        </tr>\r\n    </tbody>\r\n</table>\r\n</span></p>', '86521888', '陕西省西安市新城区万寿北路', 0, '2009-07-30 09:04:28', '2009-07-30 09:04:28');
+/*Table structure for table `users` */
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `users`;
 
---
--- 表的结构 `users`
---
-
-CREATE TABLE IF NOT EXISTS `users` (
+CREATE TABLE `users` (
   `id` mediumint(9) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -221,12 +203,11 @@ CREATE TABLE IF NOT EXISTS `users` (
   `email` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- 导出表中的数据 `users`
---
+/*Data for the table `users` */
 
-INSERT INTO `users` (`id`, `username`, `password`, `role`, `gender`, `birthday`, `email`, `register_date`) VALUES
-(8, 'mucian', '4f8e38f6f7b920081179e5c19f4db617', '', '', NULL, NULL, '2009-07-31 15:37:45'),
-(9, 'bb', '21ad0bd836b90d08f4cf640b4c298e7c', '', '', NULL, NULL, '2008-08-01 19:37:52');
+insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (8,'mucian','4f8e38f6f7b920081179e5c19f4db617','admin','',NULL,NULL,'2009-07-31 15:37:45'),(9,'bb','21ad0bd836b90d08f4cf640b4c298e7c','','',NULL,NULL,'2008-08-01 19:37:52'),(18,'enter','4124bc0a9335c27f086f24ba207a4912','enterprise','','0000-00-00',NULL,'2009-08-03 17:20:41');
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

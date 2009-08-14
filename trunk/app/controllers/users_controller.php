@@ -50,7 +50,6 @@ class UsersController extends AppController {
 	}
 
 	function logout() {
-		echo USER_LOGIN_KEY;
 		if ($this->Session->check(USER_LOGIN_KEY)) {
 			$this->Session->del(USER_LOGIN_KEY);
 		}
