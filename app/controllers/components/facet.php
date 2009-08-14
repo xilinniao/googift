@@ -1,12 +1,6 @@
 <?php
-$facetValue_map = array (
-		'day'=>'',
-		'age'=>'',
-		'acceptor'=>'',
-		'gender'=>''
-	);
 class FacetComponent extends Object {
-	
+
 	/**
 	 * @param $plusLine e.g. day{Birthday/Christmas},age{<40}
 	 * @param $keywords The search input. e.g. 生日 妻子 29岁
@@ -36,5 +30,10 @@ class FacetComponent extends Object {
 	 * @param $keywords The keywords user input. e.g. 生日 妻子 29岁
 	 */
 	//	static abstract function getKeywordPlus($plusKeys, $keywords);
+
+	function getFacetArray() {
+		require_once ("facet/facetbase.php");
+		return facetbase::getFacetArray();
+	}
 }
 ?>
