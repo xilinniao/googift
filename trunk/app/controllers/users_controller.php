@@ -2,51 +2,59 @@
 class UsersController extends AppController {
 	var $name = 'User';
 	var $helpers = array('ajax');
+	var $components = array('Auth');
+	
+		
+	function beforeFilter(){ 
+    	$this->Auth->allow('register'); 
+    }
 
 	function index() {
-
-	}
-
-	function registerPage() {
-		$this->addToNavigatorItem(1, '用户注册', '/users/registerPage');
 	}
 
 	function register() {
-		$hasThisName = $this->User->find('count', array('conditions'=>array('username' => $this->data['User']['username'])));
-		if($hasThisName > 0) {
-			$this->Session->setFlash('该用户名已存在！');
-			$this->redirect('registerPage');
-		} else {
-			if(!empty($this->data['User'])) {
-				$this->data['User']['password'] = md5($this->data['User']['password']);
-				$this->data['User']['birthday'] = $this->data['User']['birthYear']['year'] . '-' . $this->data['User']['birthMonth']['month'] . '-' . $this->data['User']['birthDay']['day'];
-				$result = $this->User->save($this->data);
+		//如果有注册数据,则验证
+		if (!empty($this->data)) {
+			if(isset($this->data['User']['password2'])){
+				$this->data['User']['password2hashed'] = 
+    				$this->Auth->password($this->data['User']['password2']);
+			} 
+			$this->User->create();
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash('Congratulations! You have signed up!');  
+				$this->redirect('login');
 			}
-			$this->redirect('loginPage');
+		}	
+		//如果没有注册数据,则直接显示注册页面
+		else{
+			$this->addToNavigatorItem(1, '用户注册', '/users/register');
 		}
-	}
-
-	function loginPage() {
-		$this->addToNavigatorItem(1, '用户登录', '/users/loginPage');
 	}
 
 	function login() {
-		if (!empty ($this->data['User'])) {
-			//$this->user->name=$this->data['User']['name'];
-			$user = $this->User->find('first', array('conditions' => array('username' => $this->data['User']['username'])));
-			$user = $user['User'];
-			if ($user['password'] == md5($this->data['User']['password'])) {
-				$this->Session->write(USER_LOGIN_KEY, $user);
-				$this->redirect('/main');
-			} else {
-				if (!$user['id']) {
-					$this->Session->setFlash('用户名错误！');
+		//如果有登录数据,则验证
+		if (!empty($this->data)) {
+			if (!empty ($this->data['User'])) {
+				//$this->user->name=$this->data['User']['name'];
+				$user = $this->User->find('first', array('conditions' => array('username' => $this->data['User']['username'])));
+				$user = $user['User'];
+				if ($user['password'] == md5($this->data['User']['password'])) {
+					$this->Session->write(USER_LOGIN_KEY, $user);
+					$this->redirect('/main');
 				} else {
-					$this->Session->setFlash('用户名与密码不匹配！');
+					if (!$user['id']) {
+						$this->Session->setFlash('用户名错误！');
+					} else {
+						$this->Session->setFlash('用户名与密码不匹配！');
+					}
+					$this->redirect('login');
 				}
-				$this->redirect('loginPage');
 			}
 		}
+	    //如果没有登录数据,则直接显示登录页面
+		else{
+			$this->addToNavigatorItem(1, '用户登录', '/users/login');
+		}	
 	}
 
 	function logout() {
@@ -85,12 +93,10 @@ class UsersController extends AppController {
 		$this->set('providers', $result['Provider']);
 	}
 
-
-
-
 	function delete() {
 		$this->User->del($this->params['url']['id']);
 		$this->redirect('index');
 	}
+
 }
 ?>

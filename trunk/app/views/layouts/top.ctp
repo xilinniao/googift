@@ -16,7 +16,7 @@
                                 }
                                 echo '<li>' . $html->link('注销', '/users/logout') . '</li>';
 			} else {
-				echo '<li>' . $html->link('登录', '/users/loginPage') . '</li><li>' . $html->link('注册', '/users/registerPage') . '</li>';
+				echo '<li>' . $html->link('登录', '/users/login') . '</li><li>' . $html->link('注册', '/users/register') . '</li>';
 			}
 		?>
 	</ul>
