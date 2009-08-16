@@ -19,4 +19,8 @@ if (!defined('URL_MAIN_PAGE')) {
 if(!defined('NAVIGATION_PATH_KEY')) {
     define('NAVIGATION_PATH_KEY', '__navigation__path__key__');
 }
+
+if (!defined('COOKIE_NAME')) {
+		define('COOKIE_NAME', '__googift__cookie_name__');
+}
 ?>

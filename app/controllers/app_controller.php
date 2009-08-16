@@ -39,9 +39,30 @@ class AppController extends Controller {
 	//var $beforeFilter = array('checkAccess');
 	var $helpers = array('ajax', 'javascript');
 
-	var $components = array('Acl', 'RequestHandler');
+	var $components = array('Acl', 'Auth', 'Cookie', 'RequestHandler');
 
-	function addToNavigatorItem($index, $text, $link) {
+        function beforeFilter(){
+           $this->Auth->loginError = "登录失败,错误的用户名或密码!";
+           $this->Cookie->name = COOKIE_NAME;
+           $this->Auth->sessionKey = USER_LOGIN_KEY;
+           $this->Auth->autoRedirect = false;
+           //$this->Auth->authorize = 'controller';
+           //$this->Auth->userScope = array('User.confirmed' => '1');
+           
+           $this->Auth->loginRedirect = array('controller'=> 'main', 'action' => 'index');
+           $this->Auth->logoutRedirect  = array('controller'=> 'main', 'action' => 'index');                    
+           $this->Auth->allow('register', 'index');
+           $this->set('loggedIn', $this->Auth->user('id'));
+           
+           if(!$this->Auth->user('id')) {
+               $cookie = $this->Cookie->read(USER_LOGIN_KEY);
+                if (!is_null($cookie)) {
+                    $this->Auth->login($cookie);
+                }
+           }
+      }
+      
+      function addToNavigatorItem($index, $text, $link) {
 		$nav = $this->Session->read(NAVIGATION_PATH_KEY);
 		if(!$nav) $nav = array();
 		if($index === null) {
