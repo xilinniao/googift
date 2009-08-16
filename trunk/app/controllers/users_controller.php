@@ -2,12 +2,6 @@
 class UsersController extends AppController {
 	var $name = 'User';
 	var $helpers = array('ajax');
-	var $components = array('Auth');
-	
-		
-	function beforeFilter(){ 
-    	$this->Auth->allow('register'); 
-    }
 
 	function index() {
 	}
@@ -31,37 +25,34 @@ class UsersController extends AppController {
 		}
 	}
 
-	function login() {
-		//如果有登录数据,则验证
-		if (!empty($this->data)) {
-			if (!empty ($this->data['User'])) {
-				//$this->user->name=$this->data['User']['name'];
-				$user = $this->User->find('first', array('conditions' => array('username' => $this->data['User']['username'])));
-				$user = $user['User'];
-				if ($user['password'] == md5($this->data['User']['password'])) {
-					$this->Session->write(USER_LOGIN_KEY, $user);
-					$this->redirect('/main');
-				} else {
-					if (!$user['id']) {
-						$this->Session->setFlash('用户名错误！');
-					} else {
-						$this->Session->setFlash('用户名与密码不匹配！');
-					}
-					$this->redirect('login');
-				}
-			}
-		}
-	    //如果没有登录数据,则直接显示登录页面
-		else{
-			$this->addToNavigatorItem(1, '用户登录', '/users/login');
-		}	
-	}
-
+    function login() {
+        if ($this->Auth->user()){
+            if (!empty($this->data)) {
+                if (empty($this->data['User']['remember_me'])) {
+                    $this->Cookie->del(USER_LOGIN_KEY);
+                }
+                else {
+                    $cookie = array();
+                    $cookie['username'] = $this->data['User']['username'];
+                    $cookie['password'] = $this->data['User']['password'];
+                    $this->Cookie->write(USER_LOGIN_KEY, $cookie, true, '+2 weeks');
+                }
+                unset($this->data['User']['remember_me']);
+            }
+            $this->redirect($this->Auth->redirect());
+        }
+        if (empty($this->data)) {
+            $this->addToNavigatorItem(1, '用户登录', '/users/login');
+        }
+    }
 	function logout() {
-		if ($this->Session->check(USER_LOGIN_KEY)) {
-			$this->Session->del(USER_LOGIN_KEY);
+        if($this->Cookie->read(USER_LOGIN_KEY)){
+            $this->Cookie->del(USER_LOGIN_KEY);
+        }
+        if ($this->Session->check(USER_LOGIN_KEY)) {
+            $this->Session->del(USER_LOGIN_KEY);
 		}
-		$this->redirect('/main');
+		$this->redirect($this->Auth->logout());
 	}
 
 	function enterpriseManagement() {

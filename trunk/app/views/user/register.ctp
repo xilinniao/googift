@@ -7,7 +7,6 @@ function roleSelectChanges() {
     if(roleSelect.selectedIndex == 1) {
         gender.parentNode.removeChild(gender);
         birth.parentNode.removeChild(birth);
-        email.parentNode.removeChild(email);
     }
 }
 
@@ -16,66 +15,66 @@ function checkTable() {
     var password = document.getElementById("password");
     var password2 = document.getElementById("password2");
 
-        if(username.value == '') {
-            alert('用户名不能为空！');
-            username.focus();
+    if(username.value == '') {
+        alert('用户名不能为空！');
+        username.focus();
+        return false;
+    }
+    if(password.value == '') {
+        alert('密码不能为空！');
+        password.focus();
+        return false;
+    }
+    if(password.value != password2.value) {
+        alert('两次输入的密码不匹配！');
+        password.value = '';
+        password2.value = '';
+        password.focus();
+        return false;
+    }
+    var emailInput = document.getElementById("UserEmail");
+    if(emailInput.value == '') {
+        alert('请输入电子邮件！');
+        emailInput.focus();
+        return false;
+    } else {
+        var emailPattern = /^([a-z][a-z0-9\_\.]*[a-z0-9])(@)(([a-z0-9][a-z0-9\-]*[a-z0-9][\.])+(com|cn|net|cc|hk|tw|au|uk|de|tv|info|biz))$/;
+        if(!emailPattern.exec(emailInput.value)) {
+            alert('电子邮件格式不正确！');
+            emailInput.focus();
             return false;
         }
-        if(password.value == '') {
-            alert('密码不能为空！');
-            password.focus();
-            return false;
-        }
-        if(password.value != password2.value) {
-            alert('两次输入的密码不匹配！');
-            password.value = '';
-            password2.value = '';
-            password.focus();
-            return false;
-        }
+    }
 
-        var roleSelect = document.getElementById("roleSelect");
-        // personal user
-        if(roleSelect.selectedIndex == 0) {
-            var genderSelect = document.getElementById("genderSelect");
-            if(genderSelect.selectedIndex == 0) {
-                alert('请选择性别！');
-                genderSelect.focus();
-                return false;
-            }
-            var yearSelect = document.getElementById("UserBirthYearYear");
-            if(yearSelect.selectedIndex == 0) {
-                alert('请选择出生日期！');
-                yearSelect.focus();
-                return false;
-            }
-            var monthSelect = document.getElementById("UserBirthMonthMonth");
-            if(monthSelect.selectedIndex == 0) {
-                alert('请选择出生日期！');
-                monthSelect.focus();
-                return false;
-            }
-            var daySelect = document.getElementById("UserBirthDayDay");
-            if(daySelect.selectedIndex == 0) {
-                alert('请选择出生日期！');
-                daySelect.focus();
-                return false;
-            }
-            var emailInput = document.getElementById("UserEmail");
-            if(emailInput.value == '') {
-                alert('请输入电子邮件！');
-                emailInput.focus();
-                return false;
-            } else {
-                var emailPattern = /^([a-z][a-z0-9\_\.]*[a-z0-9])(@)(([a-z0-9][a-z0-9\-]*[a-z0-9][\.])+(com|cn|net|cc|hk|tw|au|uk|de|tv|info|biz))$/;
-                if(!emailPattern.exec(emailInput.value)) {
-                    alert('电子邮件格式不正确！');
-                    emailInput.focus();
-                    return false;
-                }
-            }
+    var roleSelect = document.getElementById("roleSelect");
+    // personal user
+    if(roleSelect.selectedIndex == 0) {
+        var genderSelect = document.getElementById("genderSelect");
+        if(genderSelect.selectedIndex == 0) {
+            alert('请选择性别！');
+            genderSelect.focus();
+            return false;
         }
-        return true;
+        var yearSelect = document.getElementById("UserBirthYearYear");
+        if(yearSelect.selectedIndex == 0) {
+            alert('请选择出生日期！');
+            yearSelect.focus();
+            return false;
+        }
+        var monthSelect = document.getElementById("UserBirthMonthMonth");
+        if(monthSelect.selectedIndex == 0) {
+            alert('请选择出生日期！');
+            monthSelect.focus();
+            return false;
+        }
+        var daySelect = document.getElementById("UserBirthDayDay");
+        if(daySelect.selectedIndex == 0) {
+            alert('请选择出生日期！');
+            daySelect.focus();
+            return false;
+        }
+    }
+    return true;
 }
 </script>
 	
