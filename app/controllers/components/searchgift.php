@@ -31,6 +31,7 @@ class SearchgiftComponent extends Object {
 			usort($matched, 'giftComparator');
 		}
 		return $matched;
+
 	}
 
 	/**

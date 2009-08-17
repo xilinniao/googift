@@ -32,8 +32,19 @@ class FacetComponent extends Object {
 	//	static abstract function getKeywordPlus($plusKeys, $keywords);
 
 	function getFacetArray() {
+		$inputString = '女的  50岁 生日 妗子';
+		$vector = array();
 		require_once ("facet/facetbase.php");
-		return facetbase::getFacetArray();
+		$facetBase = facetbase::getFacetArray();
+		foreach ($facetBase as $facetName => $facetArray) {
+			require_once ("facet".DS.$facetName.".php");
+			$class = new ReflectionClass($facetName);
+			if ($class) {
+				$method = $class->getMethod("process");
+				$vector = $method->invoke($class->newInstance(), $inputString, $vector);
+			}
+		}
+		return $vector;
 	}
 }
 ?>
