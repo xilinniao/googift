@@ -21,7 +21,7 @@ abstract class facetbase extends Object {
 	static function getFacetArray() {
 		if(!self::$facet_array) {
 			self::$facet_array = array();
-			
+				echo 'here';
 			$facet =& new Facet();
 			$facetResult = $facet->find('all');
 			foreach ($facetResult as $item) {
@@ -35,7 +35,7 @@ abstract class facetbase extends Object {
 				$value_array['keywords'] = $keyword_array;
 				self::$facet_array[$facetName] = $value_array;
 			}
-			
+				
 			$keyword =& new Keyword();
 			$keywordResult = $keyword->find('all', array('conditions'=>array('isPrimary'=>'0'), 'fields'=>array('content DISTINCT','primary', 'facet_id')));
 			foreach ($keywordResult as $item) {
@@ -58,13 +58,39 @@ abstract class facetbase extends Object {
 	 * )
 	 * @param $vector
 	 */
-	abstract function process($vector);
-	function getCategoriesArray() {
-		return null;
+	function process($inputString, $vector) {
+		$baseArray = self::getFacetArray();
+		$facetArray = $baseArray[$this->getName()];
+		if('1' === $facetArray['facet']['isCategorical']) {
+			foreach ($facetArray['keywords'] as $primary => $nonKeywords) {
+				$regex = '/( ' . $primary . ' )';
+				foreach ($nonKeywords as $nk) {
+					$regex = $regex . '|( ' . $nk . ' )';
+				}
+				$regex = $regex . '/';
+				if (preg_match($regex, ' '.$inputString.' ')) {
+					$vector[$this->getName()] = $primary;
+					break;
+				}
+			}
+		} else {
+			$patterns = $this->getMatchPatterns();
+			if(!$patterns) return $vector;
+			foreach ($patterns as $pattern) {
+				if (preg_match($pattern, ' '.$inputString.' ', $matches)) {
+					$number = $matches[1];
+					$vector[$this->getName()] = $number;
+					break;
+				}
+			}
+		}
+		return $vector;
 	}
+	
 	function getMatchPatterns() {
 		return null;
 	}
+	
 	function getKeywordPlus($plusKeys, $keywords) {
 		$categorical = $this->isCategorical();
 		if($categorical) {

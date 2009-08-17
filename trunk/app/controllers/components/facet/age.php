@@ -6,10 +6,6 @@ class age extends facetbase {
 		return 'age';
 	}
 
-	function process($vector){
-
-	}
-
 	function getMatchPatterns() {
 		return array (
 			'/年龄[:：]?([0-9]+)/',

@@ -5,9 +5,6 @@ class day extends facetbase {
 	function getName(){
 		return 'day';
 	}
-	function process($vector){
-		
-	}
 
 }
 ?>
