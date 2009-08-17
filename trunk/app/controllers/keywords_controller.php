@@ -15,7 +15,7 @@ class KeywordsController extends AppController {
 
 	function getPrimaryKeywordsOfFacet() {
 		$facetId = $this->data['Keyword']['facet_id'];
-		$this->set('pKeywords', $this->Keyword->find('all', array('conditions'=>array('Keyword.facet_id'=>$facetId, 'isPrimary'=>'1'), 'fields' => array('Keyword.id DISTINCT', 'Keyword.content'))));
+		$this->set('pKeywords', $this->Keyword->find('all', array('conditions'=>array('Keyword.facet_id'=>$facetId, 'is_primary'=>'1'), 'fields' => array('Keyword.id DISTINCT', 'Keyword.content'))));
 	}
 }
 

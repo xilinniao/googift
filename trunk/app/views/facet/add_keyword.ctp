@@ -23,7 +23,7 @@ echo '<div class="title">添加关键词</div>';
 	</tr>
 	<tr>
 		<td>是否主词：</td>
-		<td><select name="data[Keyword][isPrimary]">
+		<td><select name="data[Keyword][is_primary]">
 			<option value="">-请选择-</option>
 			<option value="1">是</option>
 			<option value="0">否</option>

@@ -4,7 +4,7 @@ class Facet extends AppModel {
 	
 	var $hasMany = array('Keyword' =>   
                          array('className'     => 'Keyword',   
-                               'conditions'    => array('Keyword.isPrimary'=>'1'),
+                               'conditions'    => array('Keyword.is_primary'=>'1'),
                                'order'         => 'Keyword.id DESC',   
                                'limit'         => '',   
                                'foreignKey'    => 'facet_id',   
