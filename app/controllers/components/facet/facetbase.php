@@ -5,7 +5,7 @@ abstract class facetbase extends Object {
 	/**
 	 * array (
 	 * 		'day' => array(
-	 * 					'facet'=>array ('id'=>'1', 'name'=>'day', 'isCategorical'=>'1', 'weight'=>'0.7'),
+	 * 					'facet'=>array ('id'=>'1', 'name'=>'day', 'is_categorical'=>'1', 'weight'=>'0.7'),
 	 * 					'keywords' => array (
 	 * 										'生日'=>array(),
 	 * 										'七夕'=>array('中国情人节'),
@@ -37,7 +37,7 @@ abstract class facetbase extends Object {
 			}
 				
 			$keyword =& new Keyword();
-			$keywordResult = $keyword->find('all', array('conditions'=>array('isPrimary'=>'0'), 'fields'=>array('content DISTINCT','primary', 'facet_id')));
+			$keywordResult = $keyword->find('all', array('conditions'=>array('is_primary'=>'0'), 'fields'=>array('content DISTINCT','primary', 'facet_id')));
 			foreach ($keywordResult as $item) {
 				$primary_id = $item['Keyword']['primary'];
 				$primarySynonym = $keyword->find('first', array('conditions'=>array('Keyword.id'=>$primary_id)));
@@ -61,7 +61,7 @@ abstract class facetbase extends Object {
 	function process($inputString, $vector) {
 		$baseArray = self::getFacetArray();
 		$facetArray = $baseArray[$this->getName()];
-		if('1' === $facetArray['facet']['isCategorical']) {
+		if('1' === $facetArray['facet']['is_categorical']) {
 			foreach ($facetArray['keywords'] as $primary => $nonKeywords) {
 				$regex = '/( ' . $primary . ' )';
 				foreach ($nonKeywords as $nk) {

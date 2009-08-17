@@ -6,7 +6,7 @@ class FacetsController extends AppController {
 	}
 	
 	function addKeyword() {
-		$this->set('facets', $this->Facet->find('all', array('conditions'=>array('isCategorical'=>'1'))));
+		$this->set('facets', $this->Facet->find('all', array('conditions'=>array('is_categorical'=>'1'))));
 		$this->addToNavigatorItem(2, '添加关键词', '/facets/addKeyword');
 	}
 

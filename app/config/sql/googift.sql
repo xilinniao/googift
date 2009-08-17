@@ -90,14 +90,14 @@ DROP TABLE IF EXISTS `facets`;
 CREATE TABLE `facets` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) CHARACTER SET utf8 NOT NULL,
-  `isCategorical` tinyint(1) NOT NULL,
+  `is_categorical` tinyint(1) NOT NULL,
   `weight` double DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `facets` */
 
-insert  into `facets`(`id`,`name`,`isCategorical`,`weight`) values (1,'day',1,0.5),(2,'acceptor',1,0.7),(3,'age',0,0.6),(4,'gender',1,0.9);
+insert  into `facets`(`id`,`name`,`is_categorical`,`weight`) values (1,'day',1,0.5),(2,'acceptor',1,0.7),(3,'age',0,0.6),(4,'gender',1,0.9);
 
 /*Table structure for table `gift_knowledges` */
 
@@ -161,7 +161,7 @@ DROP TABLE IF EXISTS `keywords`;
 CREATE TABLE `keywords` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `content` varchar(20) CHARACTER SET utf8 NOT NULL,
-  `isPrimary` tinyint(1) DEFAULT NULL,
+  `is_primary` tinyint(1) DEFAULT NULL,
   `primary` mediumint(9) DEFAULT NULL,
   `facet_id` mediumint(9) DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -169,7 +169,7 @@ CREATE TABLE `keywords` (
 
 /*Data for the table `keywords` */
 
-insert  into `keywords`(`id`,`content`,`isPrimary`,`primary`,`facet_id`) values (1,'丈夫',1,NULL,2),(2,'老公',0,1,2),(3,'妻子',1,NULL,2),(4,'老婆',0,3,2),(5,'男朋友',1,NULL,2),(6,'男友',0,5,2),(7,'女朋友',1,NULL,2),(8,'女友',0,7,2),(9,'好朋友',1,NULL,2),(10,'好友',0,9,2),(11,'死党',0,9,2),(12,'普通朋友',1,NULL,2),(13,'朋友',0,12,2),(14,'同事',1,NULL,2),(15,'同僚',0,14,2),(16,'同学',1,NULL,2),(17,'同校',0,16,2),(18,'校友',0,16,2),(19,'领导',1,NULL,2),(20,'经理',0,19,2),(21,'主任',0,19,2),(22,'manager',0,19,2),(23,'leader',0,19,2),(24,'父亲',1,NULL,2),(25,'爸爸',0,24,2),(26,'爸',0,24,2),(27,'母亲',1,NULL,2),(28,'妈妈',0,27,2),(29,'妈',0,27,2),(30,'岳父',1,NULL,2),(31,'丈人',0,30,2),(32,'老丈人',0,30,2),(33,'外父',0,30,2),(34,'岳母',1,NULL,2),(35,'丈母娘',0,34,2),(36,'外母',0,34,2),(37,'儿子',1,NULL,2),(38,'女儿',1,NULL,2),(39,'父辈',1,NULL,2),(40,'舅舅',0,39,2),(41,'叔叔',0,39,2),(42,'伯父',0,39,2),(43,'姨父',0,39,2),(44,'姑父',0,39,2),(45,'母辈',1,NULL,2),(46,'姨姨',0,45,2),(47,'阿姨',0,45,2),(48,'婶婶',0,45,2),(49,'舅妈',0,45,2),(50,'姑姑',0,45,2),(51,'妗母',0,45,2),(52,'妗子',0,45,2),(53,'生日',1,NULL,1),(54,'情人节',1,NULL,1),(55,'七夕',1,NULL,1),(56,'中国情人节',0,55,1),(57,'圣诞',1,NULL,1),(58,'圣诞节',0,57,1),(59,'春节',1,NULL,1),(60,'过年',0,59,1),(61,'元旦',1,NULL,1),(62,'新年',0,61,1),(63,'男',1,NULL,4),(64,'男性',0,63,4),(65,'男的',0,63,4),(66,'女',1,NULL,4),(67,'女性',0,66,4),(68,'女的',0,66,4);
+insert  into `keywords`(`id`,`content`,`is_primary`,`primary`,`facet_id`) values (1,'丈夫',1,NULL,2),(2,'老公',0,1,2),(3,'妻子',1,NULL,2),(4,'老婆',0,3,2),(5,'男朋友',1,NULL,2),(6,'男友',0,5,2),(7,'女朋友',1,NULL,2),(8,'女友',0,7,2),(9,'好朋友',1,NULL,2),(10,'好友',0,9,2),(11,'死党',0,9,2),(12,'普通朋友',1,NULL,2),(13,'朋友',0,12,2),(14,'同事',1,NULL,2),(15,'同僚',0,14,2),(16,'同学',1,NULL,2),(17,'同校',0,16,2),(18,'校友',0,16,2),(19,'领导',1,NULL,2),(20,'经理',0,19,2),(21,'主任',0,19,2),(22,'manager',0,19,2),(23,'leader',0,19,2),(24,'父亲',1,NULL,2),(25,'爸爸',0,24,2),(26,'爸',0,24,2),(27,'母亲',1,NULL,2),(28,'妈妈',0,27,2),(29,'妈',0,27,2),(30,'岳父',1,NULL,2),(31,'丈人',0,30,2),(32,'老丈人',0,30,2),(33,'外父',0,30,2),(34,'岳母',1,NULL,2),(35,'丈母娘',0,34,2),(36,'外母',0,34,2),(37,'儿子',1,NULL,2),(38,'女儿',1,NULL,2),(39,'父辈',1,NULL,2),(40,'舅舅',0,39,2),(41,'叔叔',0,39,2),(42,'伯父',0,39,2),(43,'姨父',0,39,2),(44,'姑父',0,39,2),(45,'母辈',1,NULL,2),(46,'姨姨',0,45,2),(47,'阿姨',0,45,2),(48,'婶婶',0,45,2),(49,'舅妈',0,45,2),(50,'姑姑',0,45,2),(51,'妗母',0,45,2),(52,'妗子',0,45,2),(53,'生日',1,NULL,1),(54,'情人节',1,NULL,1),(55,'七夕',1,NULL,1),(56,'中国情人节',0,55,1),(57,'圣诞',1,NULL,1),(58,'圣诞节',0,57,1),(59,'春节',1,NULL,1),(60,'过年',0,59,1),(61,'元旦',1,NULL,1),(62,'新年',0,61,1),(63,'男',1,NULL,4),(64,'男性',0,63,4),(65,'男的',0,63,4),(66,'女',1,NULL,4),(67,'女性',0,66,4),(68,'女的',0,66,4);
 
 /*Table structure for table `providers` */
 
