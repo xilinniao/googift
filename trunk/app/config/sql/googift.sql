@@ -128,6 +128,7 @@ CREATE TABLE `gifts` (
   `price` decimal(8,2) DEFAULT '0.00',
   `image_url` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `keywords` text COLLATE utf8_unicode_ci,
+  `vector` text COLLATE utf8_unicode_ci,
   `description` text COLLATE utf8_unicode_ci,
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
@@ -136,7 +137,7 @@ CREATE TABLE `gifts` (
 
 /*Data for the table `gifts` */
 
-insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`description`,`created`,`modified`) values (16,NULL,'','0.00',NULL,'ss',NULL,'2009-08-05 09:28:50','2009-08-05 09:28:50');
+insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`vector`,`description`,`created`,`modified`) values (16,NULL,'','0.00',NULL,'day{生日|情人节},gender{男};day{生日},age{40~50}','(531:0.5),(541:0.5),(631:0.9);(531:0.5),(1100:0.6),(1110:0.6),(1120:0.6),(1130:0.6)',NULL,'2009-08-05 09:28:50','2009-08-19 03:54:51');
 
 /*Table structure for table `helps` */
 
@@ -204,11 +205,11 @@ CREATE TABLE `users` (
   `email` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (8,'mucian','4f8e38f6f7b920081179e5c19f4db617','admin','',NULL,NULL,'2009-07-31 15:37:45'),(9,'bb','21ad0bd836b90d08f4cf640b4c298e7c','','',NULL,NULL,'2008-08-01 19:37:52'),(18,'enter','4124bc0a9335c27f086f24ba207a4912','enterprise','','0000-00-00',NULL,'2009-08-03 17:20:41');
+insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (21,'admin','0d9e16219860e4f647d61725edca3efa88bd68ec','admin','',NULL,'admin@googift.cn','0000-00-00 00:00:00'),(20,'mucian1','8399ef36673e7f496e267cd7a1218263757706cb','enterprise','',NULL,'hfdang@gmail.com','0000-00-00 00:00:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

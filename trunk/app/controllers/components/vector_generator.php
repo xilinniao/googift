@@ -1,29 +1,22 @@
 <?php
 class VectorGeneratorComponent extends Object {
-
-    function serialize($vectorArray) {
-        $vectorString = '';
-        foreach ($vectorArray as $facet => $value) {
-            $vectorString = $vectorString . $facet . '{' . $value . '},';
-        }
-        return substr($vectorString, 0, strlen($vectorString) - 1);
-    }
+    var $components = array('Keyword', 'Vector', 'Facet'); 
     
     /**
-     * Deserialize the vector string to vector array.
-     * @param $vectorString Vector string. e.g. day{生日|情人节},age{<20|45~24}
-     * @return array Vector array. e.g. array ('day'=>'生日|情人节', 'age'=>'<20|45~24')
+     * age{>12|1~5},gender{男};age(45~65),acceptor(母亲) to (1030:0.7),(1040,0.7),(2100,0.8);(1110:0.7),(1120,0.7),(2130,0.8)
+     * @param $multiKeywordString
+     * @return unknown_type
      */
-    function deserialize($vectorString) {
-        $array = array();
-        $splits = explode(',', $vectorString);
-        foreach ($splits as $split) {
-            $index1 = strpos($split, '{');
-            $facet = substr($split, 0, $index1);
-            $value = substr($split, $index1 + 1, sizeof($split) - $index1 + 1);
-            $array[$facet] = $value;
+    function multiKeywordStringToMultiVectorString($multiKeywordString) {
+        if(!$multiKeywordString || sizeof($multiKeywordString) === 0) return '';
+        $keywordStringArray = $this->Keyword->split($multiKeywordString);
+        $vectorStringArray = array();
+        foreach ($keywordStringArray as $keywordString) {
+        	$keywordArray = $this->Keyword->deserialize($keywordString);
+        	array_push($vectorStringArray, $this->Vector->serialize($this->Facet->arrayToVector($keywordArray)));
         }
-        return $array;
+        echo $this->Vector->merge($vectorStringArray);
+        return $this->Vector->merge($vectorStringArray);
     }
 
 }

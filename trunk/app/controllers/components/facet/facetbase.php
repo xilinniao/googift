@@ -22,7 +22,6 @@ abstract class facetbase extends Object {
     static function getFacetArray() {
         if(!self::$facet_array) {
             self::$facet_array = array();
-            echo 'here';
             $facet =& new Facet();
             $facetResult = $facet->find('all');
             foreach ($facetResult as $item) {
@@ -102,6 +101,8 @@ abstract class facetbase extends Object {
      * @param $vector array('21'=>'0.5', '54'=>'0.9');
      */
     function toVector($array, $vector) {
+//        print_r($array);
+        if(!array_key_exists($this->getName(), $array)) return $vector;
         $value = $array[$this->getName()];
         if(!$value) return $vector;
         $baseArray = self::getFacetArray();
