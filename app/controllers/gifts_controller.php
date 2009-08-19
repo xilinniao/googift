@@ -2,7 +2,7 @@
 class GiftsController extends AppController {
 	var $name = "Gift";
 
-	var $components = array('Searchgift');
+	var $components = array('Searchgift', 'VectorGenerator');
 
 	function test() {
 		$allFacets = $this->Searchgift->getFacetArray();
@@ -53,6 +53,16 @@ class GiftsController extends AppController {
 		}
 		print_r( $this->getLastStoredLink());
 //		$this->redirect($this->getLastStoredLink());
+	}
+	
+	function batchGenerateVectors() {
+	    $allGifts = $this->Gift->find('all', array('fields'=>array('id','keywords')));
+	    foreach ($allGifts as $gift) {
+	    	$gift['Gift']['vector'] = $this->VectorGenerator->multiKeywordStringToMultiVectorString($gift['Gift']['keywords']);
+	    	$this->Gift->save($gift);
+	    }
+	    $this->Session->setFlash('批量更新向量成功！');
+	    $this->redirect($this->getLastStoredLink());
 	}
 
 	private function random($length)

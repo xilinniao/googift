@@ -8,17 +8,13 @@ class SearchgiftComponent extends Object {
 		return $this->Facet->getFacetArray();
 	}
 	
-	function search($allGifts, $keyword_array = null) {
+	function search($allGifts, $inputString = null) {
 		$matched = Array ();
-		$index = 0;
-		if ($keyword_array) {
+		if ($inputString) {
+		    $inputArray = $this->Facet->inputStringToVectorArray($inputString);
 			foreach ($allGifts as $gift) {
-				$plus = SearchgiftComponent :: computePlus($gift['Gift']['keywords'], $keyword_array);
-				if ($plus > 0) {
-					$matched[$index] = $gift;
-					$matched[$index]['Gift']['plus'] = $plus;
-					$index++;
-				}
+			    $gift['Gift']['plus'] = $this->Facet->correlateVector($inputArray, $gift['Gift']['keywords']);
+			    array_push($matched, $gift);
 			}
 		}
 
@@ -34,21 +30,5 @@ class SearchgiftComponent extends Object {
 
 	}
 
-	/**
-	 * @param $gKeys e.g. 
-	 * day{Birthday/Christmas},age{<40};day{SpringFestival},age{>35}
-	 */
-	function computePlus($gKeys, $inputKeys) {
-		if (!$gKeys || !$inputKeys)
-			return 0;
-		$lines = explode(';', $gKeys);
-		$maxPlus = 0;
-		foreach ($lines as $line) {
-			$plus = $this->Facet->computePlus($line, $inputKeys);
-			if ($plus > $maxPlus)
-				$maxPlus = $plus;
-		}
-		return $maxPlus;
-	}
 }
 ?>
