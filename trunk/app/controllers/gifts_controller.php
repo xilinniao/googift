@@ -51,8 +51,8 @@ class GiftsController extends AppController {
 		} else {
 			$this->Session->setFlash('删除失败！');
 		}
-		print_r( $this->getLastStoredLink());
-//		$this->redirect($this->getLastStoredLink());
+//		print_r( $this->getLastStoredLink());
+		$this->redirect($this->getLastStoredLink());
 	}
 	
 	function batchGenerateVectors() {
