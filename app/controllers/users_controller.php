@@ -2,6 +2,7 @@
 class UsersController extends AppController {
 	var $name = 'User';
 	var $helpers = array('ajax');
+	var $components = array('Facet');
 
 	function index() {
 	}
@@ -82,6 +83,7 @@ class UsersController extends AppController {
 		$this->addToNavigatorItem(3, '添加礼品', '/users/addGift');
 		$result = $this->User->find('first', array('conditions'=>array('id', $user['id'])));
 		$this->set('providers', $result['Provider']);
+		$this->set('facetBaseArray', $this->Facet->getBaseFacetArray());
 	}
 
 	function delete() {

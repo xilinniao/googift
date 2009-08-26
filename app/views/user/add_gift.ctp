@@ -25,6 +25,13 @@
 		<td><input name="file" type="file" value="浏览..." /></td>
 	</tr>
 	<tr>
+		<td valign="top">特征：</td>
+		<td valign="middle"><textarea name="displayCharat" rows="5" cols="50" wrap="off" style="overflow: scroll" readonly="readonly"></textarea>
+			<input type="button" value="添加特征" onclick="show()" />
+			<input name="data[Gift][keywords]" id="hiddenKeyword" type="hidden"></input>
+		</td>
+	</tr>
+	<tr>
 		<td colspan="2"><script type="text/javascript">
 	<!--
 	var sBasePath = '/googift/fckeditor/';
@@ -37,11 +44,6 @@
 	</script></td>
 	</tr>
 	<tr>
-		<td>特征：</td>
-		<td><textarea disabled="disabled"></textarea><input type="button"
-			value="添加特征" onclick="show()" /></td>
-	</tr>
-	<tr>
 		<td colspan="2"><input type="submit" value="添加礼品" /></td>
 	</tr>
 </table>
@@ -51,8 +53,11 @@
 function show()
 {
 	document.all.markDiv.style.display="block";
+	document.all.formWin.style.display="block";
 	document.all.markDiv.style.width=Math.max(document.body.scrollWidth, window.screen.availWidth);
 	document.all.markDiv.style.height=Math.max(document.body.scrollHeight, window.screen.availHeight);
+	document.all.formWin.style.width = 600;
+	document.all.formWin.style.left=(window.screen.width - 600) / 2;
     document.all.select.style.display = "none";
 
 //    页可见区域宽： document.body.clientWidth
@@ -73,10 +78,110 @@ function show()
 
 function close()
 {
+	alert("close");
 	document.all.markDiv.style.display="none";
+	document.all.formWin.style.display="none";
     document.all.select.style.display = "block";
 }
+
+function addCharact()
+{
+	var form = document.getElementById("formWinForm");
+	var displayValue = '';
+	var value = '';
+	for(var i=0;i<form.length;i++) {
+		if(form.elements[i].name == '') continue;
+		var values = getValueOfMultiSelect(form.elements[i]);
+		var valueText = '';
+		for(var j=0;j<values.length;j++) {
+			valueText = valueText + values[j] + '|';
+		}
+		valueText = valueText.substring(0, valueText.length - 1);
+		if(valueText != '') {
+			value = value + form.elements[i].id + '{' + valueText + '},';
+			displayValue = displayValue + form.elements[i].name + '{' + valueText + '},';
+		}
+	}
+	value = value.substring(0, value.length - 1);
+	
+	displayValue = displayValue.substring(0, displayValue.length - 1);
+	var displayTextValue = document.all.displayCharat.value;
+	displayTextValue = displayTextValue + displayValue + "\n";
+	document.all.displayCharat.value = displayTextValue;
+
+	var hiddenTextField = document.getElementById("hiddenKeyword");
+	var hiddenTextValue = hiddenTextField.value;
+	if(hiddenTextValue != '') hiddenTextValue = hiddenTextValue + ";";
+	hiddenTextValue = hiddenTextValue + value;
+	hiddenTextField.value = hiddenTextValue;
+	
+	document.all.markDiv.style.display="none";
+	document.all.formWin.style.display="none";
+    document.all.select.style.display = "block";
+}
+
+function getValueOfMultiSelect(selectObj){
+	var resultArray = new Array();
+	for(var i=0;i<selectObj.options.length;i++){
+		if(selectObj.options[i].selected) resultArray.push(selectObj.options[i].value);
+	}
+	return resultArray;
+}
 </script>
-<div id='markDiv' style='position:absolute;display:none;background:#000;filter:alpha(opacity=30);z-index:2;left:0;top:0;width:1000px;height:2000px;'>
-	<a href="javascript:close()">关闭该页</a>
+<div id='markDiv'
+	style='position: absolute; display: none; background: #FFF; filter: alpha(opacity = 50); z-index: 2; left: 0; top: 0;'>
 </div>
+<div id="formWin"
+	style='position: absolute; display: none; background: yellow; z-index: 3; top: 100px; border: thin gray solid;'>
+<form id="formWinForm">
+<table>
+<?php foreach ($facetBaseArray as $aFacet) {
+    echo '<tr>';
+    echo '<td valign="top">' . $aFacet['facet']['label'] . ':</td><td>';
+    if($aFacet['facet']['is_categorical'] === '1') {
+        echo getCategoricalInput($aFacet);
+    } else {
+        echo getContinuousInput($aFacet);
+    }
+    echo '</td></tr>';
+}?>
+	<tr>
+		<td><a href="javascript:addCharact()">添加</a></td>
+		<td><a href="javascript:close()">关闭</a></td>
+	</tr>
+</table>
+</form>
+
+</div>
+
+<?php
+function getCategoricalInput($catFacet) {
+    $options = array();
+    foreach ($catFacet['keywords'] as $priKey => $keywordArray) {
+        $options[$priKey] = $priKey;
+    }
+    $optionHtml = '';
+    foreach ($options as $value => $text) {
+        $optionHtml = $optionHtml . '<option value="' . $value . '">' . $text . '</option>';
+    }
+    return '<select id="' . $catFacet['facet']['name'] . '" size="'.giveAProperSize(sizeof($options)).'" name="' . $catFacet['facet']['label'] . '" multiple="multiple">' . $optionHtml . '</select>';
+}
+
+function getContinuousInput($contFacet) {
+    $options = array();
+    foreach ($contFacet['ranges'] as $ranges) {
+        array_push($options, $ranges);
+    }
+    $optionHtml = '';
+    foreach ($options as $value) {
+        $optionHtml = $optionHtml . '<option value="' . $value . '">' . $value . '</option>';
+    }
+    return '<select id="' . $contFacet['facet']['name'] . '" size="'.giveAProperSize(sizeof($options)).'" name="' . $contFacet['facet']['label'] . '" multiple="multiple">' . $optionHtml . '</select>';
+}
+
+function giveAProperSize($itemNumber) {
+    if($itemNumber < 10) return $itemNumber;
+    else return 10;
+}
+
+?>

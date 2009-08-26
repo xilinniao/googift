@@ -51,18 +51,22 @@ class FacetComponent extends Object {
         }
         return $vector;
     }
-    
+
     function correlateVector($base_array, $multiVectorString) {
         $cors = array();
         $vectorStringArray = $this->Vector->split($multiVectorString);
         foreach ($vectorStringArray as $vectorString) {
-        	$vectorArray = $this->Vector->deserialize($vectorString);
-        	array_push($cors, $this->Vector->computeRelation($base_array, $vectorArray));
+            $vectorArray = $this->Vector->deserialize($vectorString);
+            array_push($cors, $this->Vector->computeRelation($base_array, $vectorArray));
         }
         return max($cors);
     }
 
 
+    function getBaseFacetArray() {
+        return facetbase::getFacetArray();
+    }
+    
     /**
      * Given a facet plus values and a keywords input, compute the plus value for this facet to add to the keywords.
      * @param $plusKeys The plus values of this facet. e.g. 生日,情人节 或者 30~40.

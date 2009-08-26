@@ -90,6 +90,7 @@ DROP TABLE IF EXISTS `facets`;
 CREATE TABLE `facets` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `label` varchar(10) CHARACTER SET utf8 DEFAULT NULL,
   `is_categorical` tinyint(1) NOT NULL,
   `weight` double DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -97,7 +98,7 @@ CREATE TABLE `facets` (
 
 /*Data for the table `facets` */
 
-insert  into `facets`(`id`,`name`,`is_categorical`,`weight`) values (1,'day',1,0.5),(2,'acceptor',1,0.7),(3,'age',0,0.6),(4,'gender',1,0.9);
+insert  into `facets`(`id`,`name`,`label`,`is_categorical`,`weight`) values (1,'day','时机',1,0.5),(2,'acceptor','对象',1,0.7),(3,'age','年龄',0,0.6),(4,'gender','性别',1,0.9);
 
 /*Table structure for table `gift_knowledges` */
 
@@ -133,11 +134,11 @@ CREATE TABLE `gifts` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `gifts` */
 
-insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`vector`,`description`,`created`,`modified`) values (16,NULL,'','0.00',NULL,'day{生日|情人节},gender{男};day{生日},age{40~50}','(531:0.5),(541:0.5),(631:0.9);(531:0.5),(1100:0.6),(1110:0.6),(1120:0.6),(1130:0.6)',NULL,'2009-08-05 09:28:50','2009-08-19 03:54:51');
+insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`vector`,`description`,`created`,`modified`) values (28,8,'tt',NULL,NULL,'','','<p><img style=\"width: 276px; height: 199px\" alt=\"\" src=\"/userfiles/Winter.jpg\" />在这里添加介绍</p>\r\n<p>&nbsp;</p>','2009-08-26 06:44:05','2009-08-26 06:44:05'),(27,8,'sdasf','0.00',NULL,'acceptor{岳父|父亲},age{1~3|5~10}','(301:0.7),(241:0.7),(1010:0.6),(1020:0.6),(1030:0.6),(1040:0.6),(1050:0.6)','<p>asdfasdfasdfasdfa</p>','2009-08-26 06:39:07','2009-08-26 06:39:07'),(26,8,'asfas','0.00',NULL,'day{圣诞|七夕},acceptor{儿子|岳父},age{5~10|15~20},gender{男}',NULL,'<p>asdfas</p>','2009-08-26 06:36:56','2009-08-26 06:36:56');
 
 /*Table structure for table `helps` */
 
@@ -187,9 +188,11 @@ CREATE TABLE `providers` (
   `created` datetime DEFAULT NULL,
   `modified` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `providers` */
+
+insert  into `providers`(`id`,`name`,`full_name`,`introduction`,`phone`,`address`,`user_id`,`created`,`modified`) values (8,'test','test','<p>asdfasfasdfa</p>','','',22,'2009-08-26 06:21:26','2009-08-26 06:21:26');
 
 /*Table structure for table `users` */
 
@@ -205,11 +208,11 @@ CREATE TABLE `users` (
   `email` varchar(25) COLLATE utf8_unicode_ci DEFAULT NULL,
   `register_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (21,'admin','0d9e16219860e4f647d61725edca3efa88bd68ec','admin','',NULL,'admin@googift.cn','0000-00-00 00:00:00'),(20,'mucian1','8399ef36673e7f496e267cd7a1218263757706cb','enterprise','',NULL,'hfdang@gmail.com','0000-00-00 00:00:00');
+insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (22,'enter','4a5347a83578574fb0e7c0419884df7ddad2dd41','enterprise','',NULL,'enter@googift.cn','0000-00-00 00:00:00'),(21,'admin','0d9e16219860e4f647d61725edca3efa88bd68ec','admin','',NULL,'admin@googift.cn','0000-00-00 00:00:00'),(20,'mucian1','8399ef36673e7f496e267cd7a1218263757706cb','enterprise','',NULL,'hfdang@gmail.com','0000-00-00 00:00:00');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
