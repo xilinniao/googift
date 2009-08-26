@@ -30,8 +30,11 @@ class GiftsController extends AppController {
 			echo "Invalid file";
 		}
 
-		if(!empty($this->data) && $this->Gift->save($this->data)) {
-			$this->Session->setFlash('添加成功！');
+		if(!empty($this->data)){
+		    $this->data['Gift']['vector'] = $this->VectorGenerator->multiKeywordStringToMultiVectorString($this->data['Gift']['keywords']);
+		    if($this->Gift->save($this->data)) {
+			    $this->Session->setFlash('添加成功！');
+		    }
 		}
 		else $this->Session->setFlash('添加失败！');
 		$this->redirect('/users/addGift');

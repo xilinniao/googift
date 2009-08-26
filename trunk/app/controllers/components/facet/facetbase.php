@@ -12,6 +12,14 @@ abstract class facetbase extends Object {
      * 										'七夕'=>array('25', array(中国情人节')),
      * 										...
      * 									)
+     * 					),
+     *     'age' => array(
+     * 					'facet'=>array ('id'=>'2', 'name'=>'age', 'is_categorical'=>'0', 'weight'=>'0.7'),
+     * 					'ranges' => array (
+     * 										'0~1',
+     * 										'1~3',
+     * 										...
+     * 									)
      * 					)
      * 		...
      * 	)
@@ -29,12 +37,16 @@ abstract class facetbase extends Object {
                 $value_array = array();
                 $keyword_array = array();
                 $value_array['facet'] = $item['Facet'];
-                foreach ($item['Keyword'] as $keyword) {
-                    $keyword_array[$keyword['content']] = array();
-                    $keyword_array[$keyword['content']][0] = $keyword['id'];
-                    $keyword_array[$keyword['content']][1] = array();
+                if($item['Facet']['is_categorical'] === '1') {
+                    foreach ($item['Keyword'] as $keyword) {
+                        $keyword_array[$keyword['content']] = array();
+                        $keyword_array[$keyword['content']][0] = $keyword['id'];
+                        $keyword_array[$keyword['content']][1] = array();
+                    }
+                    $value_array['keywords'] = $keyword_array;
+                } else {
+                    $value_array['ranges'] = self::getContinuousRangeArray($item['Facet']);
                 }
-                $value_array['keywords'] = $keyword_array;
                 self::$facet_array[$facetName] = $value_array;
             }
 
@@ -48,6 +60,31 @@ abstract class facetbase extends Object {
             }
         }
         return self::$facet_array;
+    }
+
+    static function getContinuousRangeArray($facet) {
+        if($facet['is_categorical'] === '1') return array();
+        require_once ($facet['name'].".php");
+        $class = new ReflectionClass($facet['name']);
+        if ($class) {
+            $method = $class->getMethod("getRangeSplits");
+            $array = $method->invoke($class->newInstance());
+            
+            $retArray = array();
+            for ($index = 0; $index < sizeof($array) - 1; $index++) {
+                $low = $array[$index];
+                $high = $array[$index + 1];
+                if($low === ContinuousValueUtil::$NEG_INFINITE) {
+                    array_push($retArray, '<'.$high);
+                } else if($high === ContinuousValueUtil::$POS_INFINITE) {
+                    array_push($retArray, '>'.$low);
+                } else {
+                    array_push($retArray, $low . '~' . $high);
+                }
+            }
+            return $retArray;
+        }
+        return array();
     }
 
     abstract function getName();
@@ -101,7 +138,7 @@ abstract class facetbase extends Object {
      * @param $vector array('21'=>'0.5', '54'=>'0.9');
      */
     function toVector($array, $vector) {
-//        print_r($array);
+        //        print_r($array);
         if(!array_key_exists($this->getName(), $array)) return $vector;
         $value = $array[$this->getName()];
         if(!$value) return $vector;
