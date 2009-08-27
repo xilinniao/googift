@@ -8,6 +8,6 @@ echo $form->create('User', array ('action' => 'login'));
 echo $form->input('username', array ('label' => '用户名：'));
 echo $form->input('password', array ('label' => '密&nbsp;&nbsp;&nbsp;码：'));
 echo $form->checkbox('remember_me');
-echo '2周内不用再登录';
+echo $form->label('2周内不用再登录');
 echo $form->end('Login');
 ?>
