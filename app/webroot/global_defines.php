@@ -21,6 +21,6 @@ if(!defined('NAVIGATION_PATH_KEY')) {
 }
 
 if (!defined('COOKIE_NAME')) {
-		define('COOKIE_NAME', '__googift__cookie_name__');
+	define('COOKIE_NAME', '__googift__cookie_name__');
 }
 ?>
