@@ -1,12 +1,12 @@
 <?php
 class AdminsController extends AppController {
 	var $name = 'Admin';
-	var $components = array('Acl');
 	
 	function index() {
 		$this->addToNavigatorItem(1, '管理', '/admins');
 	}
 	
+	/*
 	function addARO(){    
 		$aro = new Aro();        
 		//这是我们需要迭代的所有组信息数组   
@@ -22,6 +22,7 @@ class AdminsController extends AppController {
 			$aro->save($data);
 		}    //这儿放置action的其它逻辑...
 	}
+	*/
 	
 	function test(){}
 }
