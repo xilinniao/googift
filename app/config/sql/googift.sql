@@ -1,4 +1,4 @@
-/*
+﻿/*
 SQLyog Community Edition- MySQL GUI v7.02 
 MySQL - 5.1.33-community-log : Database - googift
 *********************************************************************
@@ -14,23 +14,6 @@ MySQL - 5.1.33-community-log : Database - googift
 CREATE DATABASE /*!32312 IF NOT EXISTS*/`googift` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci */;
 
 USE `googift`;
-
-/*Table structure for table `acos` */
-
-DROP TABLE IF EXISTS `acos`;
-
-CREATE TABLE `acos` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `parent_id` int(10) DEFAULT NULL,
-  `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `foreign_key` int(10) unsigned DEFAULT NULL,
-  `alias` varchar(255) COLLATE utf8_unicode_ci DEFAULT '',
-  `lft` int(10) DEFAULT NULL,
-  `rght` int(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `acos` */
 
 /*Table structure for table `advices` */
 
@@ -63,25 +46,6 @@ CREATE TABLE `aros` (
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `aros` */
-
-/*Table structure for table `aros_acos` */
-
-DROP TABLE IF EXISTS `aros_acos`;
-
-CREATE TABLE `aros_acos` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `aro_id` int(10) unsigned NOT NULL,
-  `aco_id` int(10) unsigned NOT NULL,
-  `_create` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `_read` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `_update` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  `_delete` char(2) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-/*Data for the table `aros_acos` */
 
 /*Table structure for table `facets` */
 
@@ -139,6 +103,27 @@ CREATE TABLE `gifts` (
 /*Data for the table `gifts` */
 
 insert  into `gifts`(`id`,`provider_id`,`name`,`price`,`image_url`,`keywords`,`vector`,`description`,`created`,`modified`) values (28,8,'tt',NULL,NULL,'','','<p><img style=\"width: 276px; height: 199px\" alt=\"\" src=\"/userfiles/Winter.jpg\" />在这里添加介绍</p>\r\n<p>&nbsp;</p>','2009-08-26 06:44:05','2009-08-26 06:44:05'),(27,8,'sdasf','0.00',NULL,'acceptor{岳父|父亲},age{1~3|5~10}','(301:0.7),(241:0.7),(1010:0.6),(1020:0.6),(1030:0.6),(1040:0.6),(1050:0.6)','<p>asdfasdfasdfasdfa</p>','2009-08-26 06:39:07','2009-08-26 06:39:07'),(26,8,'asfas','0.00',NULL,'day{圣诞|七夕},acceptor{儿子|岳父},age{5~10|15~20},gender{男}',NULL,'<p>asdfas</p>','2009-08-26 06:36:56','2009-08-26 06:36:56');
+/*Table structure for table `groups` */
+
+DROP TABLE IF EXISTS `groups`;
+
+CREATE TABLE `groups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `title` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `is_visible` tinyint(1) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+/*Data for the table `groups` */
+
+LOCK TABLES `groups` WRITE;
+
+insert  into `groups`(`id`,`name`,`title`,`is_visible`,`created`,`modified`) values (4,'admin','ç®¡ç†å‘˜',0,'2009-08-17 09:39:13','2009-08-17 09:39:13'),(5,'enterprise','ä¼ä¸šç”¨æˆ·',1,'2009-08-18 09:39:44','2009-08-18 09:39:44'),(6,'personal','ä¸ªäººç”¨æˆ·',1,'2009-08-18 09:39:57','2009-08-18 09:39:57'),(7,'other','å…¶ä»–ç”¨æˆ·',1,'2009-08-18 09:40:17','2009-08-18 09:40:17');
+
+UNLOCK TABLES;
 
 /*Table structure for table `helps` */
 
@@ -199,9 +184,10 @@ insert  into `providers`(`id`,`name`,`full_name`,`introduction`,`phone`,`address
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `id` mediumint(9) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `group_id` int(11) DEFAULT NULL,
   `role` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(1) COLLATE utf8_unicode_ci NOT NULL,
   `birthday` date DEFAULT NULL,
@@ -212,7 +198,11 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`role`,`gender`,`birthday`,`email`,`register_date`) values (22,'enter','4a5347a83578574fb0e7c0419884df7ddad2dd41','enterprise','',NULL,'enter@googift.cn','0000-00-00 00:00:00'),(21,'admin','0d9e16219860e4f647d61725edca3efa88bd68ec','admin','',NULL,'admin@googift.cn','0000-00-00 00:00:00'),(20,'mucian1','8399ef36673e7f496e267cd7a1218263757706cb','enterprise','',NULL,'hfdang@gmail.com','0000-00-00 00:00:00');
+LOCK TABLES `users` WRITE;
+
+insert  into `users`(`id`,`username`,`password`,`group_id`,`role`,`gender`,`birthday`,`email`,`register_date`) values (8,'mucian','4f8e38f6f7b920081179e5c19f4db617',NULL,'admin','',NULL,NULL,'2009-07-31 15:37:45'),(9,'bb','21ad0bd836b90d08f4cf640b4c298e7c',NULL,'','',NULL,NULL,'2008-08-01 19:37:52'),(18,'enter','4124bc0a9335c27f086f24ba207a4912',NULL,'enterprise','','0000-00-00',NULL,'2009-08-03 17:20:41'),(19,'leiw','5d503c7339225256e5fa2f55bdaf6e3a9064c25b',NULL,'admin','',NULL,'leiw@gmail.com','0000-00-00 00:00:00'),(21,'jj','5d503c7339225256e5fa2f55bdaf6e3a9064c25b',5,'enterprise','',NULL,'jj@gmail.com','0000-00-00 00:00:00'),(22,'aa','5d503c7339225256e5fa2f55bdaf6e3a9064c25b',5,'enterprise','',NULL,'aa@gmail.com','0000-00-00 00:00:00');
+
+UNLOCK TABLES;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
