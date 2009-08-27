@@ -4,6 +4,22 @@ class UsersController extends AppController {
 	var $helpers = array('ajax');
 	var $components = array('Facet');
 
+	function beforeFilter() {  
+        parent::beforeFilter();
+        $this->Auth->allow( 'register','login', 'logout' ); 
+    }
+
+    function isAuthorized() {
+    	if ($this->action == 'index')
+    	{
+    		if ($this->Auth->user('role') == 'admin') {
+				return true;
+			}	
+			return false;
+    	}
+		return true;	
+    }
+    
 	function index() {
 	}
 
@@ -26,7 +42,14 @@ class UsersController extends AppController {
 		}
 	}
 
+	/*
+	  code inside this function will execute on
+ 	  autoRedirect was set to false (i.e. in a beforeFilter).
+ 	*/
     function login() {
+    	//this is for auth bug, which will cache latest url info.
+    	$this->Session->del('Auth.redirect'); 
+    	
         if ($this->Auth->user()){
             if (!empty($this->data)) {
                 if (empty($this->data['User']['remember_me'])) {
@@ -40,12 +63,15 @@ class UsersController extends AppController {
                 }
                 unset($this->data['User']['remember_me']);
             }
-            $this->redirect($this->Auth->redirect());
+            $this->redirect('/');
         }
         if (empty($this->data)) {
+            // Delete invalid Cookie
+            $this->Cookie->del(USER_LOGIN_KEY);
             $this->addToNavigatorItem(1, '用户登录', '/users/login');
         }
     }
+    
 	function logout() {
         if($this->Cookie->read(USER_LOGIN_KEY)){
             $this->Cookie->del(USER_LOGIN_KEY);
@@ -53,7 +79,7 @@ class UsersController extends AppController {
         if ($this->Session->check(USER_LOGIN_KEY)) {
             $this->Session->del(USER_LOGIN_KEY);
 		}
-		$this->redirect($this->Auth->logout());
+		$this->redirect('/');
 	}
 
 	function enterpriseManagement() {
