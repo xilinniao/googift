@@ -1,50 +1,59 @@
 <?php
 class User extends AppModel {
 	var $name = 'User';
+
+	var $belongsTo = array(
+		'Group' => array('className' => 'Group',
+							'foreignKey' => 'group_id',
+							'conditions' => '', 
+							'fields' => '',
+							'order' => ''
+		)
+	);
 	
 	var $validate = array(
-						'username' => array(
-							'notempty' => array(
-		   						'rule' => array('minLenght', 1),
-	   					    	'required' => true,
-								'allowEmpty' => false,
-								'message' => '请输入用户名!'
-							),
-							'unique' => array(
-								'rule' => array('checkUnique', 'username'),
-								'message' => '该用户名已经存在,请换一个!'
-							)		
-					    ),
-						'password' => array(
-							'notempty' => array(
-								'rule' => array('minLenght', 1),
-								'required' => true,
-								'allowEmpty' => false,
-								'message' => '请输入密码!' 	  
-							),
-							'passwordSimilar' => array(
-								'rule' => 'checkPasswords',
-								'message' => '两次输入的密码不匹配!'
-							)		
-						),
-						'email' => array( 
-							'rule' => 'email',
-							'required' => true,
-							'allowEmpty' => false,
-							'message' => '请输入有效的Email地址！'
-						)
-					);			
+			'username' => array(
+				'notempty' => array(
+					'rule' => array('minLenght', 1),
+			    	'required' => true,
+					'allowEmpty' => false,
+					'message' => '请输入用户名!'
+				),
+				'unique' => array(
+					'rule' => array('checkUnique', 'username'),
+					'message' => '该用户名已经存在,请换一个!'
+				)		
+		    ),
+			'password' => array(
+				'notempty' => array(
+					'rule' => array('minLenght', 4),
+					'required' => true,
+					'allowEmpty' => false,
+					'message' => '请输入密码!' 	  
+				),
+				'passwordSimilar' => array(
+					'rule' => 'checkPasswords',
+					'message' => '两次输入的密码不匹配!'
+				)		
+			),
+			'email' => array( 
+				'rule' => 'email',
+				'required' => true,
+				'allowEmpty' => false,
+				'message' => '请输入有效的Email地址！'
+			)
+		);			
 			
 	var $hasMany = array('Provider' =>   
-                         array('className'     => 'Provider',   
-                               'conditions'    => '',
-                               'order'         => 'Provider.modified DESC',   
-                               'limit'         => '',   
-                               'foreignKey'    => '',   
-                               'dependent'     => true,   
-                               'exclusive'     => false,   
-                               'finderQuery'   => ''  
-                         )   
+	         array('className'     => 'Provider',   
+	               'conditions'    => '',
+	               'order'         => 'Provider.modified DESC',   
+	               'limit'         => '',   
+	               'foreignKey'    => '',   
+	               'dependent'     => true,   
+	               'exclusive'     => false,   
+	               'finderQuery'   => ''  
+	         )   
                   );
           
 	function checkUnique($data, $fieldName) 
@@ -62,6 +71,6 @@ class User extends AppModel {
    		if($data['password'] == $this->data['User']['password2hashed'])
    			return true;
 		return false;   					
-   }	         
+   }	
 }
 ?>
