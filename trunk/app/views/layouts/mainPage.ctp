@@ -7,6 +7,13 @@
 </head>
 <body>
 <?php require VIEWS . 'layouts' . DS . 'top.ctp'; ?>
+<font color="red"><b>
+<?php
+    if ($session->check('Message.auth')) {
+        $session->flash('auth');
+    }
+?>
+</b></font>
 <?php echo $content_for_layout; ?>
 </body>
 </html>
