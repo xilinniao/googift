@@ -1,15 +1,24 @@
 <script type="text/javascript" src="/googift/fckeditor/fckeditor.js"></script>
 <h1 align="center">添加礼品</h1>
 <div><?php echo $session->flash();?></div>
-<form method="post" action="/googift/gifts/add">
+<form method="post" action="/googift/gifts/add"  onsubmit="return s()">
+<script type="text/javascript">
+
+function s() {
+	return checkEmpty(document.getElementById('name'), '名称') 
+		&& checkEmpty(document.getElementById('price'), '价格') && checkPositiveDouble(document.getElementById('price'), '价格')
+		&& checkEmpty(document.getElementById('character'), '特征');
+}
+
+</script>
 <table width="100%">
 	<tr>
 		<td>名称：</td>
-		<td><input type="text" name="data[Gift][name]" /></td>
+		<td><input id="name" type="text" name="data[Gift][name]" /></td>
 	</tr>
 	<tr>
 		<td>价格：</td>
-		<td><input type="text" name="data[Gift][price]" /></td>
+		<td><input id="price" type="text" name="data[Gift][price]" /></td>
 	</tr>
 	<tr>
 		<td>供应商：</td>
@@ -26,7 +35,7 @@
 	</tr>
 	<tr>
 		<td valign="top">特征：</td>
-		<td valign="middle"><textarea name="displayCharat" rows="5" cols="50" wrap="off" style="overflow: scroll" readonly="readonly"></textarea>
+		<td valign="middle"><textarea id="character" name="displayCharat" rows="5" cols="50" wrap="off" style="overflow: scroll" readonly="readonly"></textarea>
 			<input type="button" value="添加特征" onclick="show()" />
 			<input name="data[Gift][keywords]" id="hiddenKeyword" type="hidden"></input>
 		</td>
@@ -44,7 +53,7 @@
 	</script></td>
 	</tr>
 	<tr>
-		<td colspan="2"><input type="submit" value="添加礼品" /></td>
+		<td colspan="2"><input type="submit" value="添加礼品"/></td>
 	</tr>
 </table>
 </form>

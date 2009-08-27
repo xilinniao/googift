@@ -8,7 +8,11 @@
 <div class="leftMenu">
     <ul>
         <li><?php echo $html->link('添加供应商', '/users/addProvider'); ?></li>
-        <li><?php echo $html->link('管理商品', '/users/manageGift'); ?></li>
+        <?php if(sizeof($providers) > 0) {
+            echo '<li>';
+            echo $html->link('管理商品', '/users/manageGift'); 
+            echo '</li>';
+        }?>
     </ul>
 </div>
 
