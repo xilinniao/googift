@@ -31,7 +31,7 @@
         </title>
         <?php echo $javascript->link('prototype')?>
         <?php echo $javascript->link('scriptaculous')?>
-        <script type="text/javascript" src="/googift/js/check.js"></script>
+        <?php echo $javascript->link('check')?>
         <?php
         echo $html->meta('icon');
 
