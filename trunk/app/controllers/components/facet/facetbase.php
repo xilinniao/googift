@@ -1,6 +1,6 @@
 <?php
-require_once 'app' . DS . 'models' . DS . 'facet.php';
-require_once 'app' . DS . 'models' . DS . 'keyword.php';
+App::import('Model', 'Facet');
+App::import('Model', 'Keyword');
 require_once 'app' . DS . 'util' . DS . 'continuous_value_utils.php';
 abstract class facetbase extends Object {
     /**
