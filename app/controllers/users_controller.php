@@ -12,12 +12,9 @@ class UsersController extends AppController {
     function isAuthorized() {
     	if ($this->action == 'index')
     	{
-    		if ($this->Auth->user('role') == 'admin') {
-				return true;
-			}	
-			return false;
+    		return parent::isAdmin();
     	}
-		return true;	
+		parent::isAuthorized();	
     }
     
 	function index() {
@@ -30,16 +27,28 @@ class UsersController extends AppController {
 				$this->data['User']['password2hashed'] = 
     				$this->Auth->password($this->data['User']['password2']);
 			} 
+			
+			//获取group name并将group name设置为role
+			$userGroup = $this->User->Group->findById( $this->data['User']['group_id'] ); 
+			$this->data['User']['role'] = $userGroup['Group']['name'];
+			
 			$this->User->create();
 			if ($this->User->save($this->data)) {
-				$this->Session->setFlash('Congratulations! You have signed up!');  
+				$this->Session->setFlash('恭喜您,注册成功！ ');  
 				$this->redirect('login');
+			}
+			else
+			{
+				$this->Session->setFlash('对不起,您的注册信息有误!');
 			}
 		}	
 		//如果没有注册数据,则直接显示注册页面
 		else{
 			$this->addToNavigatorItem(1, '用户注册', '/users/register');
 		}
+		
+		$groups = $this->User->Group->listVisibleUserGroups();		
+		$this->set('groups',$groups);
 	}
 
 	/*
