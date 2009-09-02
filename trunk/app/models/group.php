@@ -18,6 +18,14 @@ class Group extends AppModel {
 				'counterQuery' => ''
 			)
 	);
+	
+	function listVisibleUserGroups() {
+		$results = $this->find( 'list', array( 
+			'conditions'=>array('Group.is_visible'=>'1'),
+			'fields' => array('Group.id', 'Group.title'),
+			'order' => 'Group.id ASC' ));		
+		return $results;
+	}
 
 }
 ?>
