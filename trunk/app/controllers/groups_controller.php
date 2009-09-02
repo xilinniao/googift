@@ -5,10 +5,7 @@ class GroupsController extends AppController {
 	var $helpers = array('Html', 'Form');
 	
     function isAuthorized() {
-		if ($this->Auth->user('role') == 'admin') {
-			return true;
-		} 
-		return false;
+		return parent::isAdmin();
     }  
     
 	function index() {
