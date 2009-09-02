@@ -109,11 +109,21 @@ function checkTable() {
 		<td><input id="password2" type="password" name="data[User][password2]" maxlength="50">
 		<font color="red"><b>*</b></font></td>
 	</tr>
+<!--
 	<tr>
 		<td>身份：</td>
 		<td><select id="roleSelect" name="data[User][role]" onchange="roleSelectChanges()"><option value="personal">个人用户</option><option value="enterprise">企业用户</option></select>
 		<font color="red"><b>*</b></font></td>
 	</tr>
+-->	
+	<tr>
+		<td>身份：</td>
+		<td><?php echo $form->input('group_id', array('label' => '', 'empty' => false, 'div'=>'' ));?>
+		<font color="red"><b>*</b></font></td>
+	</tr>
+	
+	
+<!--	
 	<tr id="genderInput"><td>性别：</td>
 		<td><select id="genderSelect" name="data[User][gender]"><option value="" selected="selected">-请选择-</option><option value="男">男</option><option value="女">女</option></select>
 		<font color="red"><b>*</b></font></td>
@@ -123,6 +133,7 @@ function checkTable() {
 		<td><?php echo $form->year('birthYear', 1920, 2005) . '-' . $form->month('birthMonth') . '-' . $form->day('birthDay'); ?>
 		<font color="red"><b>*</b></font></td>
 	</tr>
+-->
 	<tr id="emailInput">
 		<td>电子邮件：</td>
 		<td><?php e($form->text('email')); ?>
