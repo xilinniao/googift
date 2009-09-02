@@ -1,7 +1,7 @@
 <?php
 class User extends AppModel {
 	var $name = 'User';
-
+	var $recursive = 1;
 	var $belongsTo = array(
 		'Group' => array('className' => 'Group',
 							'foreignKey' => 'group_id',
