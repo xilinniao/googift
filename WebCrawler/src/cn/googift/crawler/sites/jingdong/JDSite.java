@@ -3,7 +3,7 @@ package cn.googift.crawler.sites.jingdong;
 import cn.googift.crawler.page.PageLinkIterator;
 import cn.googift.crawler.page.PageParser;
 import cn.googift.crawler.sites.Site;
-import cn.googift.crawler.util.NumberRangePageLinkIterator;
+import cn.googift.crawler.util.page.NumberRangePageLinkIterator;
 
 public class JDSite extends Site {
     public JDSite() {
