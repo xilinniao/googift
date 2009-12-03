@@ -15,7 +15,9 @@
     <option name="historyRevisionsNumber" value="4" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" name="Default" comment="" />
+    <list default="true" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/WebCrawler.iws" afterPath="$PROJECT_DIR$/WebCrawler.iws" />
+    </list>
     <ignored path="WebCrawler.iws" />
     <ignored path=".idea/workspace.xml" />
   </component>
@@ -80,7 +82,7 @@
       <file leaf-file-name="Crawler.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/Crawler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="0" selection-start="114" selection-end="114" vertical-scroll-proportion="0.1759379">
+            <state line="3" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.1030303">
               <folding />
             </state>
           </provider>
@@ -89,7 +91,7 @@
       <file leaf-file-name="SiteFactory.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/SiteFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.043984476">
+            <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.068686865">
               <folding />
             </state>
           </provider>
@@ -98,10 +100,8 @@
       <file leaf-file-name="SiteIterator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/SiteIterator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="23" column="28" selection-start="499" selection-end="499" vertical-scroll-proportion="0.50582147">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="23" column="28" selection-start="499" selection-end="499" vertical-scroll-proportion="0.75555557">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -109,7 +109,7 @@
       <file leaf-file-name="Site.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/Site.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="55" selection-start="338" selection-end="338" vertical-scroll-proportion="0.32988358">
+            <state line="15" column="55" selection-start="338" selection-end="338" vertical-scroll-proportion="0.5151515">
               <folding />
             </state>
           </provider>
@@ -118,10 +118,8 @@
       <file leaf-file-name="JDSite.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/jingdong/JDSite.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="38" selection-start="312" selection-end="312" vertical-scroll-proportion="0.24191462">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="11" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.34343433">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,7 +127,7 @@
       <file leaf-file-name="PageController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="17" selection-start="51" selection-end="51" vertical-scroll-proportion="0.043984476">
+            <state line="2" column="17" selection-start="51" selection-end="51" vertical-scroll-proportion="0.068686865">
               <folding />
             </state>
           </provider>
@@ -138,7 +136,7 @@
       <file leaf-file-name="PagePoller.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/PagePoller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="14" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.1759379">
+            <state line="14" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.27474746">
               <folding />
             </state>
           </provider>
@@ -147,7 +145,7 @@
       <file leaf-file-name="NumberRangePageLinkIterator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/NumberRangePageLinkIterator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="68" selection-start="152" selection-end="152" vertical-scroll-proportion="0.08796895">
+            <state line="4" column="68" selection-start="152" selection-end="152" vertical-scroll-proportion="0.13737373">
               <folding />
             </state>
           </provider>
@@ -156,7 +154,7 @@
       <file leaf-file-name="PageLinkIterator.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageLinkIterator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="4" column="17" selection-start="79" selection-end="79" vertical-scroll-proportion="0.08796895">
+            <state line="4" column="17" selection-start="79" selection-end="79" vertical-scroll-proportion="0.13737373">
               <folding />
             </state>
           </provider>
@@ -165,7 +163,7 @@
       <file leaf-file-name="JDPageController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/jingdong/JDPageController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="22" selection-start="733" selection-end="733" vertical-scroll-proportion="0.32988358">
+            <state line="18" column="22" selection-start="733" selection-end="733" vertical-scroll-proportion="0.5151515">
               <folding />
             </state>
           </provider>
@@ -221,81 +219,7 @@
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
         </PATH_ELEMENT>
         <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src\cn\googift\crawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src\cn\googift\crawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src\cn\googift\crawler\sites" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-      </PATH>
-      <PATH>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewModuleNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src\cn\googift\crawler" />
-          <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-        </PATH_ELEMENT>
-        <PATH_ELEMENT>
-          <option name="myItemId" value="PsiDirectory:D:\Workspace\Projects\IntelliJ\WebCrawler\src\cn\googift\crawler\page" />
+          <option name="myItemId" value="PsiDirectory:C:\wamp\www\googift\WebCrawler" />
           <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
         </PATH_ELEMENT>
       </PATH>
@@ -327,25 +251,27 @@
     <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
+      <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
+      <option name="ADDITIONAL_CLASS_PATH" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
       <envs />
-    </configuration>
-    <configuration default="true" type="Remote" factoryName="Remote">
-      <option name="USE_SOCKET_TRANSPORT" value="true" />
-      <option name="SERVER_MODE" value="false" />
-      <option name="SHMEM_ADDRESS" value="javadebug" />
-      <option name="HOST" value="localhost" />
-      <option name="PORT" value="5005" />
+      <method>
+        <option name="Make" value="true" />
+      </method>
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG" enabled="false" merge="false">
       <module name="" />
@@ -376,27 +302,18 @@
         <option name="Make" value="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JUnit" factoryName="JUnit" enabled="false" merge="false">
-      <module name="" />
+    <configuration default="true" type="Application" factoryName="Application" enabled="false" merge="false">
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="METHOD_NAME" />
-      <option name="TEST_OBJECT" value="class" />
-      <option name="VM_PARAMETERS" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="ADDITIONAL_CLASS_PATH" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="wholeProject" />
-      </option>
+      <module name="" />
       <envs />
-      <method>
-        <option name="Make" value="true" />
-      </method>
     </configuration>
     <configuration default="true" type="Applet" factoryName="Applet">
       <module name="" />
@@ -409,6 +326,13 @@
       <option name="VM_PARAMETERS" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
     </configuration>
     <list size="0" />
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -439,6 +363,8 @@
     <option name="UPDATE_RUN_STATUS" value="false" />
     <option name="UPDATE_RECURSIVELY" value="true" />
     <option name="MERGE_DRY_RUN" value="false" />
+    <configuration useDefault="true">C:\Documents and Settings\hdang\Application Data\Subversion</configuration>
+    <upgradeMode>auto</upgradeMode>
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -461,11 +387,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1288" height="972" extended-state="7" />
+    <frame x="-4" y="-4" width="1288" height="972" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296837" order="8" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="1" />
@@ -473,13 +399,13 @@
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3296837" order="8" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3296837" order="8" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="7" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="1" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="0" />
       <window_info id="Maven projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
       <window_info id="Module Dependencies" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="3" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32927817" order="0" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32927817" order="0" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" order="8" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" order="2" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" order="6" />
@@ -557,76 +483,72 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/PagePoller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.1759379">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/NumberRangePageLinkIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="68" selection-start="152" selection-end="152" vertical-scroll-proportion="0.08796895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageLinkIterator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="17" selection-start="79" selection-end="79" vertical-scroll-proportion="0.08796895">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/jingdong/JDPageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="22" selection-start="733" selection-end="733" vertical-scroll-proportion="0.32988358">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="17" selection-start="51" selection-end="51" vertical-scroll-proportion="0.043984476">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/SiteFactory.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.043984476">
+        <state line="2" column="13" selection-start="48" selection-end="48" vertical-scroll-proportion="0.068686865">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/SiteIterator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="28" selection-start="499" selection-end="499" vertical-scroll-proportion="0.50582147">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="23" column="28" selection-start="499" selection-end="499" vertical-scroll-proportion="0.75555557">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/Site.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="55" selection-start="338" selection-end="338" vertical-scroll-proportion="0.32988358">
+        <state line="15" column="55" selection-start="338" selection-end="338" vertical-scroll-proportion="0.5151515">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/jingdong/JDSite.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="38" selection-start="312" selection-end="312" vertical-scroll-proportion="0.24191462">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="11" column="38" selection-start="309" selection-end="309" vertical-scroll-proportion="0.34343433">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="17" selection-start="51" selection-end="51" vertical-scroll-proportion="0.068686865">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/PagePoller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="12" selection-start="423" selection-end="423" vertical-scroll-proportion="0.27474746">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/util/NumberRangePageLinkIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="68" selection-start="152" selection-end="152" vertical-scroll-proportion="0.13737373">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/page/PageLinkIterator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="17" selection-start="79" selection-end="79" vertical-scroll-proportion="0.13737373">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/sites/jingdong/JDPageController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="22" selection-start="733" selection-end="733" vertical-scroll-proportion="0.5151515">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cn/googift/crawler/Crawler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="0" selection-start="114" selection-end="114" vertical-scroll-proportion="0.1759379">
+        <state line="3" column="0" selection-start="72" selection-end="72" vertical-scroll-proportion="0.1030303">
           <folding />
         </state>
       </provider>
