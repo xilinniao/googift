@@ -13,7 +13,7 @@ public class SiteIterator implements Iterator<Site> {
     }
 
     public boolean hasNext() {
-        return index >= sites.size();
+        return index < sites.size();
     }
 
     public Site next() {
