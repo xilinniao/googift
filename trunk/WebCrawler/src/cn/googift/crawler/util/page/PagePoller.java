@@ -1,4 +1,4 @@
-package cn.googift.crawler.util;
+package cn.googift.crawler.util.page;
 
 import cn.googift.crawler.page.Page;
 

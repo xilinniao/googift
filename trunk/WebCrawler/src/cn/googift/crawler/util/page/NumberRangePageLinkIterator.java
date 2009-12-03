@@ -1,4 +1,4 @@
-package cn.googift.crawler.util;
+package cn.googift.crawler.util.page;
 
 import cn.googift.crawler.page.PageLinkIterator;
 
@@ -17,7 +17,7 @@ public class NumberRangePageLinkIterator implements PageLinkIterator {
     }
 
     public boolean hasNext() {
-        return currentId < endId ? true : false;
+        return currentId < endId;
     }
 
     public String next() {
