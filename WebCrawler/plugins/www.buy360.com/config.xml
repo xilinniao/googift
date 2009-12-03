@@ -1,0 +1,4 @@
+<config>
+    <site-class name="cn.googift.crawler.sites.jingdong.JDSite"/>
+    <jar name="jingdong20091203.jar"/>
+</config>
