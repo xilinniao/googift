@@ -1,0 +1,3 @@
+<sites>
+    <site class="cn.googift.crawler.sites.jingdong.JDSite"/>
+</sites>
