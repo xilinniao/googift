@@ -1,17 +1,20 @@
 package cn.googift.crawler.sites;
 
-import cn.googift.crawler.page.PageController;
+import cn.googift.crawler.page.PageLinkIterator;
+import cn.googift.crawler.page.PageParser;
 
 public abstract class Site {
-    protected final String siteId;
+    protected final String domain;
 
-    protected Site(String siteId) {
-        this.siteId = siteId;
+    protected Site(String domain) {
+        this.domain = domain;
     }
 
-    public String getSiteId() {
-        return siteId;
+    public String getDomain() {
+        return domain;
     }
 
-    public abstract PageController getPageController();
+    public abstract PageLinkIterator getPageLinkIterator();
+
+    public abstract PageParser getPageParser();
 }
