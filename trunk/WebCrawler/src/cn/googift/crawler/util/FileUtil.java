@@ -5,19 +5,26 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 
 public class FileUtil {
-    public static List<BufferedImage> loadImageList(String dirURL) {
+    public static List<File> loadFileList(String dirURL, Comparator<File> fileComparator) {
         File dir = new File(dirURL);
-        List<BufferedImage> images = new ArrayList<BufferedImage>();
         if (dir.exists() && dir.isDirectory()) {
-            for (File file : dir.listFiles()) {
-                if (!ImageFileFilter.accept(file.getName())) continue; // not a image
+            final File[] files = dir.listFiles(new ImageFileFilter());
+            final List<File> fileList = Arrays.asList(files);
+            if(null != fileComparator) Collections.sort(fileList, fileComparator);
+            return fileList;
+        }
+        throw new IllegalArgumentException("The designate url does not exist or is not a dir.");
+    }
+
+    public static List<BufferedImage> toImageList(List<File> fileList) {
+        List<BufferedImage> images = new ArrayList<BufferedImage>(fileList.size());
+            for (File file : fileList) {
                 images.add(loadImage(file));
             }
-        }
         return images;
     }
 
