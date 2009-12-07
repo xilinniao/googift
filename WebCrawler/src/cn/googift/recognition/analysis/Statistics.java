@@ -1,7 +1,9 @@
-package cn.googift.recognition.imageanalysis;
+package cn.googift.recognition.analysis;
+
+import cn.googift.recognition.image.Photo;
 
 import java.awt.image.BufferedImage;
-//import javaanpr.imageanalysis.Photo;
+//import javaanpr.analysis.Photo;
 
 public class Statistics {
     public float maximum;
@@ -9,11 +11,11 @@ public class Statistics {
     public float average;
     public float dispersion;
 
-    Statistics(BufferedImage bi) {
+    public Statistics(BufferedImage bi) {
         this(new Photo(bi));
     }
 
-    Statistics(Photo photo) {
+    public Statistics(Photo photo) {
         float sum = 0;
         float sum2 = 0;
         int w = photo.getWidth();
