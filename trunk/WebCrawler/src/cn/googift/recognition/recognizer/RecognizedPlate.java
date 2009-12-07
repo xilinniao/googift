@@ -1,23 +1,25 @@
-package cn.googift.recognition;
+package cn.googift.recognition.recognizer;
+
+import cn.googift.recognition.recognizer.RecognizedChar;
 
 import java.util.Vector;
 
 public class RecognizedPlate {
-    Vector<CharacterRecognizer.RecognizedChar> chars;
+    Vector<RecognizedChar> chars;
 
     public RecognizedPlate() {
-        this.chars = new Vector<CharacterRecognizer.RecognizedChar>();
+        this.chars = new Vector<RecognizedChar>();
     }
 
-    public void addChar(CharacterRecognizer.RecognizedChar chr) {
+    public void addChar(RecognizedChar chr) {
         this.chars.add(chr);
     }
 
-    public CharacterRecognizer.RecognizedChar getChar(int i) {
+    public RecognizedChar getChar(int i) {
         return this.chars.elementAt(i);
     }
 
-    public Vector<CharacterRecognizer.RecognizedChar> getChars() {
+    public Vector<RecognizedChar> getChars() {
         return chars;
     }
 
