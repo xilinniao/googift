@@ -2,6 +2,7 @@ package cn.googift.crawler.util.parser;
 
 public class PriceHandler {
     public static Float parsePriceNumber(String content) {
+        if(null == content) return null;
         content = removeNonNumber(content);
         return Float.parseFloat(content);
     }

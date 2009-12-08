@@ -18,7 +18,7 @@ public class JDSite extends Site {
         super(DOMAIN);
     }
 
-    private static final int startId = 100000;
+    private static final int startId = 187581;
     private static final int endId = 199999;
     private static final String linkPrefix = "http://www.360buy.com/product/";
     private static final String linkSufffix = ".html";
@@ -48,6 +48,7 @@ public class JDSite extends Site {
             if (null != product) {
                 System.out.println("product.getName() = " + product.getName());
                 System.out.println("product.getMarketPrice() = " + product.getMarketPrice());
+                System.out.println("product.getPrice() = " + product.getPrice());
             }
             count++;
             System.out.println("count = " + count);
