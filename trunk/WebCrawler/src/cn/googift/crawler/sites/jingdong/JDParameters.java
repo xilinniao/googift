@@ -20,4 +20,8 @@ public class JDParameters {
     public String getMarketPricePattern() {
         return paramProp.getProperty("marketPricePattern");
     }
+
+    public String getPricePattern() {
+        return paramProp.getProperty("priceLinkPattern");
+    }
 }

@@ -42,7 +42,7 @@ public class SiteConfigParser
         digester.addSetNext("site", "setSiteConfig");
         
         InputSource inputSource = new InputSource(new FileInputStream(new File(configFilePath)));
-        inputSource.setEncoding("utf-8");
+        inputSource.setEncoding("ISO8859-1");
         SiteConfigParser parser = (SiteConfigParser) digester.parse(inputSource);
         return parser.getSiteConfig();
         
@@ -60,19 +60,24 @@ public class SiteConfigParser
     
     public static void  main(String[] args)
     {
-        SiteConfigParser parser = new SiteConfigParser("D://test1.xml");
-        try
-        {
-            SiteConfig siteConfig = parser.parseSiteConfig();
-            System.out.println(siteConfig);
-            System.out.println(siteConfig.getName());
-            System.out.println(siteConfig.getJarFileName());
-                
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }
+//        SiteConfigParser parser = new SiteConfigParser("D:\\site.xml");
+//        try
+//        {
+//            SiteConfig siteConfig = parser.parseSiteConfig();
+//            System.out.println(siteConfig);
+//            System.out.println(new String(siteConfig.getName().getBytes("ISO8859-1"),"gbk"));
+//            System.out.println(siteConfig.getJarFileName());
+//
+//        }
+//        catch (Exception e)
+//        {
+//            e.printStackTrace();
+//        }
+        String hello = "Hello world 世界你好";
+               System.out.println("[test 1-1]: with system default encoding="
+                   + System.getProperty("file.encoding") + "\nstring=" + hello
+                   + "\tlength=" + hello.length());
+
     }
     
 }
