@@ -37,4 +37,12 @@ public class JDParameters {
     public String getProductImageLink(String imageName) {
         return parameterProp.getProperty("productImagePrefix") + imageName;
     }
+
+    public String getPositionDivPattern() {
+        return parameterProp.getProperty("positionDivPattern");
+    }
+
+    public String getAHrefContentPattern() {
+        return parameterProp.getProperty("ahrefContentPattern");
+    }
 }
