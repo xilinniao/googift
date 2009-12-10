@@ -58,6 +58,15 @@ public class JDSite extends Site {
                     }
                     System.out.println("");
                 }
+                System.out.println("product.getDescription() = " + product.getDescription());
+                List<String> stringList = product.getCategories();
+                if(null != stringList) {
+                    System.out.print("product.getCategories() = ");
+                    for(String s : stringList) {
+                        System.out.print(s + "->");
+                    }
+                    System.out.println("");
+                }
             }
             count++;
             System.out.println("count = " + count);

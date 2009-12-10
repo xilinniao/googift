@@ -1,5 +1,7 @@
 package cn.googift.crawler.data;
 
+import java.util.List;
+
 public class Product {
     private final String url;
     private final String name;
@@ -7,6 +9,8 @@ public class Product {
     private Float price;
     private String displayName;
     private String description;
+    private List<String> picLinks;
+    private List<String> categories;
 
     public Product(String url, String name) {
         this.url = url;
@@ -51,5 +55,24 @@ public class Product {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getPicLinks() {
+        return picLinks;
+    }
+
+    public void setPicLinks(List<String> picLinks) {
+        this.picLinks = picLinks;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
+        for(int i=0;i<categories.size();i++) {
+            categories.set(i, categories.get(i).replaceAll("\\s", ""));
+        }
     }
 }
