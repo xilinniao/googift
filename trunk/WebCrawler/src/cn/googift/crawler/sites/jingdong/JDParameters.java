@@ -4,24 +4,37 @@ import java.util.Properties;
 import java.io.IOException;
 
 public class JDParameters {
-   private static Properties paramProp = new Properties();
+    private static Properties parameterProp = new Properties();
+
     static {
         try {
-            paramProp.load(JDParameters.class.getResourceAsStream("/cn/googift/crawler/sites/jingdong/parameters.properties"));
+            parameterProp.load(JDParameters.class.getResourceAsStream("/cn/googift/crawler/sites/jingdong/parameters.properties"));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public String getNamePattern() {
-        return paramProp.getProperty("namePattern");
+        return parameterProp.getProperty("namePattern");
     }
 
     public String getMarketPricePattern() {
-        return paramProp.getProperty("marketPricePattern");
+        return parameterProp.getProperty("marketPricePattern");
     }
 
     public String getPricePattern() {
-        return paramProp.getProperty("priceLinkPattern");
+        return parameterProp.getProperty("priceLinkPattern");
+    }
+
+    public String getLittleImageDivPattern() {
+        return parameterProp.getProperty("productLittleImageDivPattern");
+    }
+
+    public String getProductNamePatternFromLittleImageDiv() {
+        return parameterProp.getProperty("productNamePatternFromLittleImageDiv");
+    }
+
+    public String getProductImageLink(String imageName) {
+        return parameterProp.getProperty("productImagePrefix") + imageName;
     }
 }
