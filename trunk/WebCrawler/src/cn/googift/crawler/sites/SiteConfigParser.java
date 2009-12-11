@@ -1,19 +1,21 @@
 package cn.googift.crawler.sites;
 
 import java.io.File;
-import java.io.FileInputStream;
-
-import javax.xml.parsers.SAXParser;
 
 import org.apache.commons.digester.Digester;
-import org.xml.sax.InputSource;
 
-public class SiteConfigParser
+import cn.googift.crawler.GoogiftConstans;
+
+public class SiteConfigParser implements GoogiftConstans
 {
-    private String configFilePath; 
+    private String siteConfigHome;
     private SiteConfig siteConfig;
+
+    public SiteConfigParser()
+    {
+    }
     
-    public SiteConfig getSiteConfig()
+    public SiteConfig getSiteConfig() throws Exception
     {
         return siteConfig;
     }
@@ -22,62 +24,41 @@ public class SiteConfigParser
     {
         this.siteConfig = siteConfig;
     }
-
-    public SiteConfigParser(String configFilePath)
+    
+    public String getSiteConfigHome()
     {
-        this.configFilePath = configFilePath;
+        return siteConfigHome;
+    }
+
+    public void setSiteConfigHome(String siteConfigHome)
+    {
+        this.siteConfigHome = siteConfigHome;
     }
     
-    public SiteConfig parseSiteConfig() throws Exception
+    public void parse() throws Exception
     {
         Digester digester = new Digester();
         
         //ignore validating XML
         digester.setValidating( false );
         digester.push(this);
+        
         digester.addObjectCreate("site", SiteConfig.class);
         digester.addBeanPropertySetter("site/name");
         digester.addBeanPropertySetter("site/class", "mainClass");
         digester.addBeanPropertySetter("site/jar","jarFileName");
+        digester.addBeanPropertySetter("site/jarHome","jarFilePath");
         digester.addSetNext("site", "setSiteConfig");
         
-        InputSource inputSource = new InputSource(new FileInputStream(new File(configFilePath)));
-        inputSource.setEncoding("ISO8859-1");
-        SiteConfigParser parser = (SiteConfigParser) digester.parse(inputSource);
-        return parser.getSiteConfig();
+        File f = new File(siteConfigHome + File.separator + siteConfigFileName); 
         
+        if (!f.exists())
+        {
+            throw new Exception ("the site.xml is not existent in " + siteConfigHome);        }
+        
+        digester.parse(f);
     }
 
-    public String getConfigFilePath()
-    {
-        return configFilePath;
-    }
 
-    public void setConfigFilePath(String configFilePath)
-    {
-        this.configFilePath = configFilePath;
-    }
-    
-    public static void  main(String[] args)
-    {
-//        SiteConfigParser parser = new SiteConfigParser("D:\\site.xml");
-//        try
-//        {
-//            SiteConfig siteConfig = parser.parseSiteConfig();
-//            System.out.println(siteConfig);
-//            System.out.println(new String(siteConfig.getName().getBytes("ISO8859-1"),"gbk"));
-//            System.out.println(siteConfig.getJarFileName());
-//
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-        String hello = "Hello world 世界你好";
-               System.out.println("[test 1-1]: with system default encoding="
-                   + System.getProperty("file.encoding") + "\nstring=" + hello
-                   + "\tlength=" + hello.length());
 
-    }
-    
 }

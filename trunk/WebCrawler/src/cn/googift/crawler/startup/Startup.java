@@ -1,27 +1,33 @@
 package cn.googift.crawler.startup;
 
-import cn.googift.crawler.loader.ClassLoaderFactory;
-import cn.googift.crawler.sites.Site;
+import cn.googift.crawler.sites.SiteFactory;
 
 
 public final class Startup {
 
-    public Startup() {
+    private String pluginsHome;
+    public Startup(String pluginsHome) {
+        this.pluginsHome = pluginsHome;
     }
     
-    @SuppressWarnings("unchecked")
     public void run() throws Exception
     {
-        ClassLoader siteClassLoader = ClassLoaderFactory.createSiteClassLoader("C:/bin");
-        
-        //the main class should read from site.xml 
-        Class<Site> clz = (Class<Site>)siteClassLoader.loadClass("cn.googift.crawler.sites.jingdong.JDSite");
-        Site site = clz.newInstance();
-        System.out.print(site.getDomain());
+        SiteFactory f = SiteFactory.getInstance();
+        f.setPluginsHome(pluginsHome);
+        f.initSiteConfigs();
+        f.initSites();
+        System.out.print(f.getSites().values());
     }
 
+    
     public static void main(String[] args) {
-        Startup  startup = new Startup();
+        
+        if (args.length < 1)
+        {
+            System.out.println("Please set your plugins home directory:\n\n");
+            System.exit(0);
+        }
+        Startup  startup = new Startup(args[0]);
         try
         {
             startup.run();

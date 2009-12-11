@@ -1,15 +1,18 @@
 package cn.googift.crawler.sites;
 
 
+
 /*
  * The class is for description the Site configuration
  * */
 public class SiteConfig
 {
-    String name;
-    String mainClass;
-    String jarFileName;
-    String jarFilepath;
+    private String sitePluginHome;
+    
+    private String name;
+    private String mainClass;
+    private String jarFileName;
+    private String jarFileHome;
     
     public String getName()
     {
@@ -35,12 +38,40 @@ public class SiteConfig
     {
         this.jarFileName = jarFileName;
     }
-    public String getJarFilepath()
+
+    
+    public String getJarFileHome()
     {
-        return jarFilepath;
+        return jarFileHome;
     }
-    public void setJarFilepath(String jarFilepath)
+    
+    public void setJarFileHome(String jarFileHome)
     {
-        this.jarFilepath = jarFilepath;
+        this.jarFileHome = jarFileHome;
+    }
+    
+    public String getCanonicalJarHome()
+    {
+        
+        if (null == jarFileHome || jarFileHome.length()==0)
+        {
+            return sitePluginHome;   
+        }
+        return jarFileHome; 
+    }
+    
+    public String toString()
+    {
+         return "Site Name:" + this.name + "\n"
+             +  "Site Class:" + this.mainClass + "\n"
+             +  "Site Jar home:" + this.getCanonicalJarHome() + "\n";
+    }
+    public String getSitePluginHome()
+    {
+        return sitePluginHome;
+    }
+    public void setSitePluginHome(String sitePluginHome)
+    {
+        this.sitePluginHome = sitePluginHome;
     }
 }
