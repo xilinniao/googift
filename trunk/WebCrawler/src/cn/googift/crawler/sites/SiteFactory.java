@@ -38,7 +38,7 @@ public class SiteFactory {
     }
     
     
-    public void initSiteConfigs() throws Exception
+    public void initSiteConfigs() throws Exception 
     {
         siteConfigs.clear();
         
@@ -63,11 +63,19 @@ public class SiteFactory {
         SiteConfig siteConfig = null;
         for (int i=0; i<siteDirs.length; i++)
         {
-            siteConfigParser.setSiteConfigHome(siteDirs[i].getCanonicalPath());
-            siteConfigParser.parse();
-            siteConfig = siteConfigParser.getSiteConfig();
-            siteConfig.setSitePluginHome(siteDirs[i].getCanonicalPath());
-            siteConfigs.add(siteConfig);
+            try
+            {
+                siteConfigParser.setSiteConfigHome(siteDirs[i].getCanonicalPath());
+                siteConfigParser.parse();
+                siteConfig = siteConfigParser.getSiteConfig();
+                siteConfig.setSitePluginHome(siteDirs[i].getCanonicalPath());
+                siteConfigs.add(siteConfig);
+            }
+            catch (Exception e)
+            {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
     
@@ -92,25 +100,37 @@ public class SiteFactory {
         }
         
         ClassLoader classLoader = new URLClassLoader(lst.toArray(new URL[lst.size()]));
-        iterator = siteConfigs.iterator();
-        while( iterator. hasNext() )
+        ClassLoader currentClassLoader = Thread.currentThread().getContextClassLoader();
+        try
         {
-            SiteConfig siteConfig= iterator.next();
-            Class<Site> clz;
-            try
-            {
-                clz = (Class<Site>)classLoader.loadClass(siteConfig.getMainClass());
-                Site site = clz.newInstance();
-                site.setSiteConfig(siteConfig);
-                sites.put(site.getDomain(), site);
-            }
-            catch (Exception e)
-            {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            Thread.currentThread().setContextClassLoader(classLoader);
             
+            iterator = siteConfigs.iterator();
+            while( iterator. hasNext() )
+            {
+                SiteConfig siteConfig= iterator.next();
+                Class<Site> clz;
+                try
+                {
+                    clz = (Class<Site>)classLoader.loadClass(siteConfig.getMainClass());
+                    
+                    Site site = clz.newInstance();
+                    site.setSiteConfig(siteConfig);
+                    sites.put(site.getDomain(), site);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
         }
+          
+        finally
+        {
+            Thread.currentThread().setContextClassLoader(currentClassLoader);
+        }
+        
+        
     }
     
     
