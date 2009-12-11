@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<site> 	
+	<name>京东</name>
+	<class>cn.googift.crawler.sites.jingdong.JDSite</class>
+	<jarFilePath></jarFilePath>
+</site>	
