@@ -1,6 +1,7 @@
 package cn.googift.recognition.image.implement;
 
 import cn.googift.recognition.analysis.CharAnalysis;
+import cn.googift.recognition.image.BrightnessComputer;
 import cn.googift.recognition.image.Char;
 import cn.googift.recognition.image.ImageHelper;
 
@@ -9,6 +10,12 @@ import java.util.List;
 import java.util.Vector;
 
 public class DefaultCharAnalysis extends CharAnalysis {
+    private final BrightnessComputer brightnessComputer;
+
+    public DefaultCharAnalysis(BrightnessComputer brightnessComputer) {
+        this.brightnessComputer = brightnessComputer;
+    }
+
     public List<Double> extractFeature(Char ch) {
         return extractEdgeFeatures(ch);
     }
@@ -34,7 +41,7 @@ public class DefaultCharAnalysis extends CharAnalysis {
         int h = image.getHeight();
         double featureMatch;
 
-        float[][] array = ImageHelper.bufferedImageToArray(image, w, h);
+        float[][] array = ImageHelper.bufferedImageToArray(image, w, h, brightnessComputer);
 
         double[] output = new double[features.length * 4];
 

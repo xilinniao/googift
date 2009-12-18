@@ -20,15 +20,32 @@ public class ImageHelper {
         }
     }
 
+    public static int getAlpha(BufferedImage image, int x, int y) {
+        int pixel = image.getRGB(x, y);
+        return (pixel >> 24) & 0xff;
+    }
+
+    public static int getRed(BufferedImage image, int x, int y) {
+        int pixel = image.getRGB(x, y);
+        return (pixel >> 16) & 0xff;
+    }
+
+    public static int getGreen(BufferedImage image, int x, int y) {
+        int pixel = image.getRGB(x, y);
+        return (pixel >> 8) & 0xff;
+    }
+
+    public static int getBlue(BufferedImage image, int x, int y) {
+        int pixel = image.getRGB(x, y);
+        return pixel & 0xff;
+    }
+
     public static float getBrightness(BufferedImage image, int x, int y) {
-        int r = image.getRaster().getSample(x, y, 0);
-        int g = image.getRaster().getSample(x, y, 1);
-        int b = image.getRaster().getSample(x, y, 2);
-        if(r == 255 && g == 255 && b == 255) return 0;
-        if(r > 200 && g < 100 && b < 100) return 1;
-        return 0;
-//        float[] hsb = Color.RGBtoHSB(r, g, b, null);
-//        return hsb[2];
+        int r = getRed(image, x, y);
+        int g = getGreen(image, x, y);
+        int b = getBlue(image, x, y);
+        float[] hsb = Color.RGBtoHSB(r, g, b, null);
+        return hsb[2];
     }
 
     public static float getSaturation(BufferedImage image, int x, int y) {
@@ -133,11 +150,11 @@ public class ImageHelper {
     }
 
 
-    public static float[][] bufferedImageToArray(BufferedImage image, int w, int h) {
+    public static float[][] bufferedImageToArray(BufferedImage image, int w, int h, BrightnessComputer brightnessComputer) {
         float[][] array = new float[w][h];
         for (int x = 0; x < w; x++) {
             for (int y = 0; y < h; y++) {
-                array[x][y] = getBrightness(image, x, y);
+                array[x][y] = brightnessComputer.getBrightness(image, x, y);
             }
         }
         return array;
