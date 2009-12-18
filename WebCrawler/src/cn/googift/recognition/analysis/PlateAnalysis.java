@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Vector;
 
-public abstract class PlateAnalysis {
+public abstract class PlateAnalysis implements BrightnessComputer {
 
     public List<Char> getChars(Plate plate) {
         Vector<Char> out = new Vector<Char>();
@@ -28,13 +28,20 @@ public abstract class PlateAnalysis {
         Graph graph = new Graph();
         for (int x = 0; x < bi.getWidth(); x++) {
             float counter = 0;
-            for (int y = 0; y < bi.getHeight(); y++)
-                counter += ImageHelper.getBrightness(bi, x, y);
+            for (int y = 0; y < bi.getHeight(); y++) {
+                float brightness = getBrightness(bi, x, y);
+//                if(1 == brightness) System.out.print("a ");
+//                else System.out.print("  ");
+                counter += brightness;
+            }
+//            System.out.println();
             graph.addHistogram(counter);
         }
         return graph;
     }
 
     protected abstract List<Peak> findPeaks(Graph graph);
+
+    public abstract float getBrightness(BufferedImage bi, int x, int y);
 
 }

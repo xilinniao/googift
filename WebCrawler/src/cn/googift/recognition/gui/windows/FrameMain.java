@@ -30,7 +30,8 @@ public class FrameMain extends javax.swing.JFrame {
             int index = this.parentFrame.selectedIndex;
             try {
 
-                recognizedText = new Recognizer(PricePlateAnalysis.loadBaseChars(), PricePlateAnalysis.getBaseChars(), new PricePlateAnalysis(), new DefaultCharAnalysis()).recognize(this.parentFrame.car.getBi());
+                PricePlateAnalysis analysis = new PricePlateAnalysis();
+                recognizedText = new Recognizer(PricePlateAnalysis.loadBaseChars(), PricePlateAnalysis.getBaseChars(), analysis, new DefaultCharAnalysis(analysis)).recognize(this.parentFrame.car.getBi());
             } catch (Exception ex) {
                 ex.printStackTrace();
                 this.parentFrame.recognitionLabel.setText("");
