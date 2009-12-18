@@ -28,4 +28,11 @@ public class PagePoller {
     public static BufferedImage pollImage(String link) throws IOException {
         return ImageIO.read(new URL(link));
     }
+
+    public static void main(String[] args) throws IOException {
+        String url = "http://www.newegg.com.cn/Product/75-c07-175.htm";
+        Page page = PagePoller.poll(url, "utf-8");
+        System.out.println("page = " + page);
+    }
+
 }

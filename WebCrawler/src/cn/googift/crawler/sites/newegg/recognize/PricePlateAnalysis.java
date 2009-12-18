@@ -1,4 +1,4 @@
-package cn.googift.crawler.sites.jingdong.recognize;
+package cn.googift.crawler.sites.newegg.recognize;
 
 import cn.googift.crawler.util.FileUtil;
 import cn.googift.recognition.analysis.PlateAnalysis;
@@ -18,7 +18,7 @@ public class PricePlateAnalysis extends PlateAnalysis {
     }
 
     public static List<BufferedImage> loadBaseChars() {
-        String imageDir = PricePlateAnalysis.class.getResource("/cn/googift/crawler/sites/jingdong/recognize/price_characters/").getPath();
+        String imageDir = PricePlateAnalysis.class.getResource("/cn/googift/crawler/sites/newegg/recognize/price_characters/").getPath();
         return FileUtil.toImageList(FileUtil.loadFileList(imageDir, new BaseImageFileComparator(getBaseChars())));
     }
 
@@ -50,7 +50,7 @@ public class PricePlateAnalysis extends PlateAnalysis {
         int g = ImageHelper.getGreen(bi, x, y);
         int b = ImageHelper.getBlue(bi, x, y);
         if (r == 255 && g == 255 && b == 255) return 0;
-        if (r > 200 && g < 100 && b < 100) return 1;
+        if (r > g && r > b) return 1;
         return 0;
     }
 
