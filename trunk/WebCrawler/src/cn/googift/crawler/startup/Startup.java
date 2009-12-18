@@ -22,12 +22,12 @@ public final class Startup {
     
     public static void main(String[] args) {
         
-        if (args.length < 1)
-        {
-            System.out.println("Please set your plugins home directory:\n\n");
-            System.exit(0);
-        }
-        Startup  startup = new Startup(args[0]);
+//        if (args.length < 1)
+//        {
+//            System.out.println("Please set your plugins home directory:\n\n");
+//            System.exit(0);
+//        }
+        Startup  startup = new Startup("c:\\wamp\\www\\googift\\WebCrawler\\plugins");
         try
         {
             startup.run();
