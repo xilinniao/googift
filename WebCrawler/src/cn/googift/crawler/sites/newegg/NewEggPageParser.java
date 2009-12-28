@@ -33,7 +33,7 @@ public class NewEggPageParser extends PageParser {
             product.setMarketPrice(PriceHandler.parsePriceNumber(mps));
         }
         final String picLink = OneGroupContentParser.pickContent(parameters.getPricePattern(), pageContent);
-        product.setPrice(PriceHandler.parsePriceNumber(PriceParser.parsePrice("http://www.newegg.com.cn/"+picLink)));
+        product.setDiscountPrice(PriceHandler.parsePriceNumber(PriceParser.parsePrice("http://www.newegg.com.cn/"+picLink)));
         product.setPicLinks(parsePicLinks(parameters, pageContent));
 
 //        List<String> descriptionDivs = HTMLHelper.getTagContentWithAttribute(pageContent, "div", "id", "EFF_PINFO_Con_0");

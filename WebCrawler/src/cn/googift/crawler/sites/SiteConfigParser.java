@@ -4,9 +4,9 @@ import java.io.File;
 
 import org.apache.commons.digester.Digester;
 
-import cn.googift.crawler.GoogiftConstans;
+import cn.googift.crawler.Constans;
 
-public class SiteConfigParser implements GoogiftConstans
+public class SiteConfigParser implements Constans
 {
     private String siteConfigHome;
     private SiteConfig siteConfig;

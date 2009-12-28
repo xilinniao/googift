@@ -31,7 +31,7 @@ public class JDPageParser extends PageParser {
             product.setMarketPrice(PriceHandler.parsePriceNumber(mps));
         }
         final String picLink = OneGroupContentParser.pickContent(jdParameters.getPricePattern(), pageContent);
-        product.setPrice(PriceHandler.parsePriceNumber(JDPriceParser.parsePrice(picLink)));
+        product.setDiscountPrice(PriceHandler.parsePriceNumber(JDPriceParser.parsePrice(picLink)));
         product.setPicLinks(parsePicLinks(jdParameters, pageContent));
         List<String> descriptionDivs = HTMLHelper.getTagContentWithAttribute(pageContent, "div", "id", "EFF_PINFO_Con_0");
         if(null != descriptionDivs && descriptionDivs.size() > 0) {
