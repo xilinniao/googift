@@ -50,7 +50,7 @@ public class SiteConfigParser implements Constans
         digester.addBeanPropertySetter("site/jarHome","jarFilePath");
         digester.addSetNext("site", "setSiteConfig");
         
-        File f = new File(siteConfigHome + File.separator + siteConfigFileName); 
+        File f = new File(siteConfigHome + File.separator + CRAWLER_SITE_CONFIG_FILE_NAME); 
         
         if (!f.exists())
         {

@@ -2,6 +2,6 @@ package cn.googift.crawler;
 
 public interface Constans
 {
-    String siteConfigFileName = "site.xml";
+    String CRAWLER_SITE_CONFIG_FILE_NAME = "site.xml";
     
 }
