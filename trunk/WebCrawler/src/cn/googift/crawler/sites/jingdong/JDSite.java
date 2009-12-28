@@ -50,7 +50,7 @@ public class JDSite extends Site {
                 System.out.println("product.getUrl() = " + product.getUrl());
                 System.out.println("product.getName() = " + product.getName());
                 System.out.println("product.getMarketPrice() = " + product.getMarketPrice());
-                System.out.println("product.getPrice() = " + product.getPrice());
+                System.out.println("product.getPrice() = " + product.getDiscountPrice());
                 List<String> picLinks = product.getPicLinks();
                 if(null != picLinks) {
                     for(String pl : picLinks) {
