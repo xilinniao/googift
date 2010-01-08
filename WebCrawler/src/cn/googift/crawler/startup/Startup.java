@@ -1,13 +1,35 @@
 package cn.googift.crawler.startup;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+import cn.googift.crawler.service.ProductService;
 import cn.googift.crawler.sites.SiteFactory;
 
 
 public final class Startup {
 
     private String pluginsHome;
+    private static EntityManagerFactory emf;
+    private static EntityManager em;
+    private ProductService ps;
+    
     public Startup(String pluginsHome) {
         this.pluginsHome = pluginsHome;
+    }
+    
+    public static EntityManager getEntityManager()
+    {
+        if (emf == null)
+        {
+        	emf = Persistence.createEntityManagerFactory("crawler");
+        }
+        if (em == null)
+        {
+        	em = emf.createEntityManager();
+        }
+        return em;
     }
     
     public void run() throws Exception
@@ -16,7 +38,9 @@ public final class Startup {
         f.setPluginsHome(pluginsHome);
         f.initSiteConfigs();
         f.initSites();
-        System.out.print(f.getSites().values());
+        f.setProductService(new ProductService(em));
+        f.crawlSites();
+        //System.out.print(f.getSites().values());
     }
 
     
