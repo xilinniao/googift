@@ -5,7 +5,6 @@ import cn.googift.crawler.page.Page;
 import cn.googift.crawler.page.PageLinkIterator;
 import cn.googift.crawler.page.PageParser;
 import cn.googift.crawler.sites.Site;
-import cn.googift.crawler.sites.jingdong.JDParameters;
 import cn.googift.crawler.util.page.PagePoller;
 
 import java.io.IOException;

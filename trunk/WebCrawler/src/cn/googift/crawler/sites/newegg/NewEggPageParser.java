@@ -3,7 +3,6 @@ package cn.googift.crawler.sites.newegg;
 import cn.googift.crawler.data.Product;
 import cn.googift.crawler.page.Page;
 import cn.googift.crawler.page.PageParser;
-import cn.googift.crawler.sites.jingdong.recognize.JDPriceParser;
 import cn.googift.crawler.sites.newegg.recognize.PriceParser;
 import cn.googift.crawler.util.parser.OneGroupContentParser;
 import cn.googift.crawler.util.parser.PriceHandler;
