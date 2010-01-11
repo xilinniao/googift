@@ -1,6 +1,7 @@
 package cn.googift.crawler.sites;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
@@ -9,7 +10,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import cn.googift.crawler.util.*;
+import cn.googift.crawler.data.Product;
+import cn.googift.crawler.page.Page;
+import cn.googift.crawler.page.PageLinkIterator;
+import cn.googift.crawler.page.PageParser;
+import cn.googift.crawler.service.ProductService;
+import cn.googift.crawler.util.FileUtil;
+import cn.googift.crawler.util.page.PagePoller;
 
 
 public class SiteFactory {
@@ -19,8 +26,18 @@ public class SiteFactory {
     //the absolute directory path for all site plugins
     private String pluginsHome;
     
+    private ProductService productService;
     
-    //the site config parser to parse all site configuration
+    
+    public ProductService getProductService() {
+		return productService;
+	}
+
+	public void setProductService(ProductService productService) {
+		this.productService = productService;
+	}
+
+	//the site config parser to parse all site configuration
     private SiteConfigParser siteConfigParser = new SiteConfigParser();
     
     private List<SiteConfig> siteConfigs = new ArrayList<SiteConfig>();
@@ -94,7 +111,6 @@ public class SiteFactory {
             }
             catch (Exception e)
             {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         }
@@ -129,10 +145,65 @@ public class SiteFactory {
         {
             Thread.currentThread().setContextClassLoader(currentClassLoader);
         }
-        
-        
     }
     
+    public void crawlSites()
+    {
+    	Iterator<Site> it = sites.values().iterator();
+    	while (it.hasNext())
+    	{
+    		crawlSite(it.next());
+    	}
+    }
+    
+    private void crawlSite(Site site)
+    {
+        final PageLinkIterator linkIterator = site.getPageLinkIterator();
+        final PageParser parser = site.getPageParser();
+        int count = 0;
+        while (linkIterator.hasNext() && count < 100) {
+            final String link = linkIterator.next();
+            Page page;
+			try {
+				page = PagePoller.poll(link, "gb2312");
+	            final Product product = parser.parse(page);
+	            if (null != product) {
+	                if (null != productService.getProductByUrl(product.getUrl()))
+	                {
+	                	productService.update(product);
+	                } 
+	                else
+	                {
+	                	productService.create(product);
+	                }
+	            	
+//	            	System.out.println("product.getUrl() = " + product.getUrl());
+//	                System.out.println("product.getName() = " + product.getName());
+//	                System.out.println("product.getMarketPrice() = " + product.getMarketPrice());
+//	                System.out.println("product.getPrice() = " + product.getDiscountPrice());
+//	                List<String> picLinks = product.getPicLinks();
+//	                if(null != picLinks) {
+//	                    for(String pl : picLinks) {
+//	                        System.out.print(pl + "; ");
+//	                    }
+//	                    System.out.println("");
+//	                }
+//	                System.out.println("product.getDescription() = " + product.getDescription());
+//	                List<String> stringList = product.getCategories();
+//	                if(null != stringList) {
+//	                    System.out.print("product.getCategories() = ");
+//	                    for(String s : stringList) {
+//	                        System.out.print(s + "->");
+//	                    }
+//	                    System.out.println("");
+//	                }
+	            }
+	            count++;
+	            System.out.println("count = " + count);
+			} catch (IOException e) {
+			}
+        }
+    }
     
     
     public Site getSiteByDomain(String siteDomain)
@@ -148,12 +219,13 @@ public class SiteFactory {
     public static void main(String args[])
     {
         SiteFactory f = SiteFactory.getInstance();
-        f.setPluginsHome("D:\\SitePlugins");
+        f.setPluginsHome("E:\\Leiw\\SitePlugins");
         try
         {
             f.initSiteConfigs();
             f.initSites();
-            System.out.print(f.getSites());
+            f.crawlSites();
+            //System.out.print(f.getSites());
         }
         catch (Exception e)
         {
