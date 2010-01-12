@@ -28,7 +28,6 @@ public class SiteFactory {
     
     private ProductService productService;
     
-    
     public ProductService getProductService() {
 		return productService;
 	}
@@ -43,7 +42,7 @@ public class SiteFactory {
     private List<SiteConfig> siteConfigs = new ArrayList<SiteConfig>();
     private Map<String, Site> sites = new HashMap<String, Site>();
     
-    private SiteFactory(){}
+	private SiteFactory(){}
     
     public static SiteFactory getInstance()
     {
@@ -96,6 +95,9 @@ public class SiteFactory {
         }
     }
     
+    /*
+     * initialize the sites by the site configuraton information.
+     * */
     public void initSites()
     {
         List<URL> lst = new ArrayList<URL>();
@@ -115,6 +117,9 @@ public class SiteFactory {
             }
         }
         
+        /*
+         * Load site class dynamically
+         * */
         ClassLoader classLoader = new URLClassLoader(lst.toArray(new URL[lst.size()]));
         ClassLoader currentClassLoader = Thread.currentThread().getContextClassLoader();
         try
@@ -152,7 +157,9 @@ public class SiteFactory {
     	Iterator<Site> it = sites.values().iterator();
     	while (it.hasNext())
     	{
-    		crawlSite(it.next());
+    		Site site = it.next();
+    		new Thread(new CrawlSiteTask(site, productService)).start();
+    		//crawlSite(it.next());
     	}
     }
     
@@ -253,5 +260,55 @@ public class SiteFactory {
     public Map<String, Site> getSites()
     {
         return sites;
+    }
+    
+    public void setSites(Map<String, Site> sites) {
+		this.sites = sites;
+	}
+    
+    class CrawlSiteTask implements Runnable 
+    {
+    	private final Site site;
+    	private final ProductService productService;
+    	
+		public CrawlSiteTask(Site site, ProductService productService) 
+		{
+			this.site = site;
+			this.productService = productService;
+		}
+
+		public void run() 
+		{
+			final PageLinkIterator linkIterator = site.getPageLinkIterator();
+	        final PageParser parser = site.getPageParser();
+	        
+	        int count = 0;
+	        
+	        while (linkIterator.hasNext() && count < 100) {
+	            final String link = linkIterator.next();
+				try {
+					Page page = PagePoller.poll(link, "gb2312");
+		            final Product product = parser.parse(page);
+		            if (null != product) 
+		            {
+		            	System.out.println("product.getUrl() = " + product.getUrl());
+		                System.out.println("product.getName() = " + product.getName());
+//		            	if (null != productService.getProductByUrl(product.getUrl()))
+//		                {
+//		                	productService.update(product);
+//		                } 
+//		                else
+//		                {
+//		                	productService.create(product);
+//		                }
+		            }
+		            count++;
+				} catch (Exception e) 
+				{
+					//make sure any exception will not break the thread.
+				}
+	        }
+		}
+    	
     }
 }
