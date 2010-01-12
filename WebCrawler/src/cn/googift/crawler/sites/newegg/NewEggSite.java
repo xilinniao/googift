@@ -13,7 +13,7 @@ import java.util.List;
 public class NewEggSite extends Site {
     static final String DOMAIN = "newegg.com.cn";
     private static final NewEggParameters param = new NewEggParameters();
-    protected NewEggSite() {
+    public NewEggSite() {
         super(DOMAIN);
     }
 
