@@ -9,12 +9,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import cn.googift.crawler.data.Product;
 import cn.googift.crawler.page.Page;
 import cn.googift.crawler.page.PageLinkIterator;
 import cn.googift.crawler.page.PageParser;
 import cn.googift.crawler.service.ProductService;
+import cn.googift.crawler.startup.Startup;
 import cn.googift.crawler.util.FileUtil;
 import cn.googift.crawler.util.page.PagePoller;
 
@@ -158,58 +160,11 @@ public class SiteFactory {
     	while (it.hasNext())
     	{
     		Site site = it.next();
-    		new Thread(new CrawlSiteTask(site, productService)).start();
+    		new Thread(new CrawlSiteTask(site, 
+    				new ProductService(Startup.getEntityManager())))
+    				.start();
     		//crawlSite(it.next());
     	}
-    }
-    
-    private void crawlSite(Site site)
-    {
-        final PageLinkIterator linkIterator = site.getPageLinkIterator();
-        final PageParser parser = site.getPageParser();
-        int count = 0;
-        while (linkIterator.hasNext() && count < 100) {
-            final String link = linkIterator.next();
-            Page page;
-			try {
-				page = PagePoller.poll(link, "gb2312");
-	            final Product product = parser.parse(page);
-	            if (null != product) {
-	                if (null != productService.getProductByUrl(product.getUrl()))
-	                {
-	                	productService.update(product);
-	                } 
-	                else
-	                {
-	                	productService.create(product);
-	                }
-	            	
-//	            	System.out.println("product.getUrl() = " + product.getUrl());
-//	                System.out.println("product.getName() = " + product.getName());
-//	                System.out.println("product.getMarketPrice() = " + product.getMarketPrice());
-//	                System.out.println("product.getPrice() = " + product.getDiscountPrice());
-//	                List<String> picLinks = product.getPicLinks();
-//	                if(null != picLinks) {
-//	                    for(String pl : picLinks) {
-//	                        System.out.print(pl + "; ");
-//	                    }
-//	                    System.out.println("");
-//	                }
-//	                System.out.println("product.getDescription() = " + product.getDescription());
-//	                List<String> stringList = product.getCategories();
-//	                if(null != stringList) {
-//	                    System.out.print("product.getCategories() = ");
-//	                    for(String s : stringList) {
-//	                        System.out.print(s + "->");
-//	                    }
-//	                    System.out.println("");
-//	                }
-	            }
-	            count++;
-	            System.out.println("count = " + count);
-			} catch (IOException e) {
-			}
-        }
     }
     
     
@@ -291,22 +246,32 @@ public class SiteFactory {
 		            final Product product = parser.parse(page);
 		            if (null != product) 
 		            {
-		            	System.out.println("product.getUrl() = " + product.getUrl());
-		                System.out.println("product.getName() = " + product.getName());
-//		            	if (null != productService.getProductByUrl(product.getUrl()))
-//		                {
-//		                	productService.update(product);
-//		                } 
-//		                else
-//		                {
-//		                	productService.create(product);
-//		                }
+		            	System.out.println("[" + count + "]   " + "parse Url() " + product.getUrl());
+		                
+		            	Product existProduct = productService.getProductByUrl(product.getUrl());
+		                if (null != existProduct)
+		                {
+		                	existProduct.copyPropertiesFromProduct(product);
+		                	productService.update(existProduct);
+		                } 
+		                else
+		                {
+		                	product.setGuid(UUID.randomUUID().toString());
+		                	productService.create(product);
+		                }
 		            }
+		            else
+		            {
+		            	System.out.println("[" + count + "]   " + " Failed " + page.getURL() );
+		            }
+		            
 		            count++;
 				} catch (Exception e) 
 				{
 					//make sure any exception will not break the thread.
+					e.printStackTrace();
 				}
+				
 	        }
 		}
     	

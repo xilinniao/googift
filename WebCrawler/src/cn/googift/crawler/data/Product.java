@@ -1,10 +1,19 @@
 package cn.googift.crawler.data;
 
 import java.io.Serializable;
-import javax.persistence.*;
+import java.lang.reflect.InvocationTargetException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.math.BigDecimal;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Version;
+
+import org.apache.commons.beanutils.BeanUtils;
+import org.apache.commons.lang.StringUtils;
 
 
 /**
@@ -21,6 +30,9 @@ public class Product implements Serializable {
 	@Column(updatable=false, unique=true, nullable=false, length=255)
 	private String guid;
 
+	@Column(length=255)
+	private String category;
+	
 	@Column(name="created_at")
 	private Timestamp createdAt;
 
@@ -38,6 +50,26 @@ public class Product implements Serializable {
 
 	@Column(length=255)
 	private String name;
+	
+	@Lob
+	@Column (name="resouce_link")
+	private String resouceLink;
+
+	public String getResouceLink() {
+		return resouceLink;
+	}
+
+	public void setResouceLink(String resouceLink) {
+		this.resouceLink = resouceLink;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	@Column(name="updated_at")
 	private Timestamp updatedAt;
@@ -56,6 +88,7 @@ public class Product implements Serializable {
 
 	public void setPicLinks(List<String> picLinks) {
 		this.picLinks = picLinks;
+		this.resouceLink = getResLinkFromResLinks();
 	}
 
 	public List<String> getCategories() {
@@ -64,10 +97,14 @@ public class Product implements Serializable {
 
 	public void setCategories(List<String> categories) {
 		this.categories = categories;
+		this.category = getCategoryFromCategories();
 	}
 
 	private List<String> categories;
-
+	
+    public Product() {
+    }
+	
     public Product(String url, String name) {
     	this.url = url;
     	this.name = name;
@@ -159,7 +196,29 @@ public class Product implements Serializable {
 			.append("Guid:" + guid + "|")
 			.append("Name:" + name + "|")
 			.append("Url:" + url + "|").toString();
-			
-			
+	}
+	
+	public void copyPropertiesFromProduct(Product p)
+	{
+		try {
+			BeanUtils.copyProperties(this, p);
+		} catch (Exception e) {
+		}
+	}
+	
+	public String getResLinkFromResLinks()
+	{
+		String s = StringUtils.replace(picLinks.toString(), ", ", " ");  
+		s = StringUtils.replace(s, "[",  "");
+		s = StringUtils.replace(s, "]", "");
+		return s;
+	}
+	
+	public String getCategoryFromCategories()
+	{
+		String s = StringUtils.replace(categories.toString(), ", ", "|");  
+		s = StringUtils.replace(s, "[",  "");
+		s = StringUtils.replace(s, "]", "");
+		return s;
 	}
 }

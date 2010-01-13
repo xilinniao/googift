@@ -3,6 +3,7 @@ package cn.googift.crawler.service;
 import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -20,10 +21,11 @@ public class ProductService {
     }
 	
 	public Product create(Product p) {
+		p.setGuid(UUID.randomUUID().toString());
 		em.getTransaction().begin();
 		p.setCreatedAt(new Timestamp(System.currentTimeMillis()));
 		em.merge(p);
-		em.flush();
+		//em.flush();
 		em.getTransaction().commit();
 			
 		return p;
@@ -34,7 +36,25 @@ public class ProductService {
 		em.getTransaction().begin();
 		p.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
 		em.merge(p);
-		em.flush();
+		//em.flush();
+		em.getTransaction().commit();
+			
+		return p;
+	}
+	
+	public Product save(Product p) {
+		
+		Product aP = this.getProductByUrl(p.getUrl());
+		if (null == aP)
+		{
+			p.setCreatedAt(new Timestamp(System.currentTimeMillis()));
+		}
+		else
+		{
+			p.setUpdatedAt(new Timestamp(System.currentTimeMillis()));
+		}
+		em.getTransaction().begin();
+		em.merge(p);
 		em.getTransaction().commit();
 			
 		return p;
