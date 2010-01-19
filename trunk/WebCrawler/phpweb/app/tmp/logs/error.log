@@ -1,0 +1,2 @@
+2010-01-19 02:53:18 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1064: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '%长虹%' at line 1</span> in [CORE\cake\libs\model\datasources\dbo_source.php, line 525]
+2010-01-19 02:53:18 Warning: Warning (2): Invalid argument supplied for foreach() in [APP\views\product\index.ctp, line 28]
