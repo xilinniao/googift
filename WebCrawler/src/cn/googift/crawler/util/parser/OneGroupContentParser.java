@@ -12,7 +12,7 @@ public class OneGroupContentParser {
     }
 
     public static List<String> pickMultipleOccurs(String pattern, String content) {
-        RegexMatcher rm = new RegexMatcher(pattern, false, true);
+        RegexMatcher rm = new RegexMatcher(pattern, false, false);
         List<String[]> strings = rm.matchAll(content);
         if(null != strings) {
             List<String> occurs = new ArrayList<String>(strings.size());

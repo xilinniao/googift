@@ -21,6 +21,20 @@ public class HTMLHelper {
         return contentList;
     }
 
+    public static String htmlToString(String html) {
+        String noHTMLString = html.replaceAll("\\<.*?\\>", "");
+        noHTMLString = noHTMLString.replace("&lt;", "<");
+        noHTMLString = noHTMLString.replace("&gt;", ">");
+        noHTMLString = noHTMLString.replace("&amp;", "&");
+        noHTMLString = noHTMLString.replace("&quot;", "\"");
+//        noHTMLString = noHTMLString.replace("&reg;", "®");
+//        noHTMLString = noHTMLString.replace("&trade;", "™");
+//        noHTMLString = noHTMLString.replace("&ensp;", " "); //半个空白位
+//        noHTMLString = noHTMLString.replace("&emsp;", " "); //一个空白位
+        noHTMLString = noHTMLString.replace("&nbsp;", " ");
+        return noHTMLString;
+    }
+
     private static boolean tagHasAttribute(String html, final Integer index, String attributeName, String attributeValue) {
         int tagRight = html.indexOf(">", index + 1);
         if (tagRight < 0) return false;
