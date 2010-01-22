@@ -38,7 +38,7 @@ public final class Startup {
         f.setPluginsHome(pluginsHome);
         f.initSiteConfigs();
         f.initSites();
-        f.setProductService(new ProductService(em));
+        f.setProductService(new ProductService());
         f.crawlSites();
         //System.out.print(f.getSites().values());
     }
