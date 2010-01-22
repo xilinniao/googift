@@ -161,7 +161,7 @@ public class SiteFactory {
     	{
     		Site site = it.next();
     		new Thread(new CrawlSiteTask(site, 
-    				new ProductService(Startup.getEntityManager())))
+    				new ProductService()))
     				.start();
     		//crawlSite(it.next());
     	}

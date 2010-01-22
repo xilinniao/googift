@@ -23,7 +23,7 @@ public class ProductServiceTest extends TestCase {
 	protected void setUp() throws Exception {
         emf = Persistence.createEntityManagerFactory("crawler");
         em =  emf.createEntityManager();
-        ps = new ProductService(em);
+        ps = new ProductService();
 	}
 
 	protected void tearDown() throws Exception {

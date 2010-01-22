@@ -26,7 +26,7 @@ public class SiteFactoryTest extends TestCase {
    {
 	    emf = Persistence.createEntityManagerFactory("crawler");
         em =  emf.createEntityManager();
-        ps = new ProductService(em);
+        ps = new ProductService();
         
 	   JDSite = new JDSite();
 	   NewEggSite = new NewEggSite();
