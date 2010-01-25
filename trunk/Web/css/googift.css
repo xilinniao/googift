@@ -1,0 +1,116 @@
+* {
+	margin:0;
+	padding:0;
+	list-style-position: inside;
+}
+
+body {
+	background-color: white;
+	width: 805px;
+	margin-left: auto;
+	margin-right: auto;
+	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
+	font-size:90%;
+}
+
+hr {
+	width: 100%;
+	margin: 20px 0 20px 0;
+}
+
+.centerAligned {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+
+#header {
+	height: 80px;
+	background: #cccccc;
+	margin-top: 5px;
+}
+
+#footer {
+	margin: 20px;
+}
+
+#forumTable {
+	margin: 10px 0 10px 0;
+	width: 100%;
+	border: thin #D3DBCE solid;
+}
+
+#forumTableLeftColumn {
+	width: 180px;
+	border: thin #D3DBCE solid;
+	padding: 5px;
+}
+
+#forumTableRightColumn {
+	border: thin #D3DBCE solid;
+	padding: 5px;
+}
+
+
+a {
+	color: #003d4c;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+a:hover {
+	background:#fff;
+	color: #003d4c;
+	text-decoration:none;
+}
+
+.navigator {
+	background: #66cc66;
+	line-height: 30px;
+	margin-top: 10px;
+	padding-left: 5px;
+}
+
+.BigRectangle {
+	margin-top: 10px;
+	border: thin #D3DBCE solid;
+	padding: 5px;
+	list-style-position: inside;
+}
+
+.ariticleTitle {
+	font-size: large;
+	font-weight: bold;
+	margin: 10px;
+	text-align: center;
+}
+	
+.ariticleContent {
+	margin: 10px;
+}	
+
+
+
+.form {
+	width: 100%;
+}
+
+.form input {
+	margin-left: 5px;
+	margin-top: 5px;
+}
+
+.form textarea {
+	margin-left: 5px;
+	margin-top: 5px;
+	width: 90%;
+	height: 150px;
+}
+.form label {
+	vertical-align: top;
+}
