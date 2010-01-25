@@ -17,6 +17,8 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="module" module-name="IKAnalyzer" />
+    <orderEntry type="module" module-name="Lucene" />
     <orderEntryProperties />
   </component>
 </module>
