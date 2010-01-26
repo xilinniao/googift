@@ -35,7 +35,7 @@ public class JDPageParser extends PageParser {
         product.setPicLinks(parsePicLinks(jdParameters, pageContent));
         List<String> descriptionDivs = HTMLHelper.getTagContentWithAttribute(pageContent, "div", "id", "EFF_PINFO_Con_0");
         if(null != descriptionDivs && descriptionDivs.size() > 0) {
-            product.setDescription(descriptionDivs.get(0));
+            product.setDescription(HTMLHelper.htmlToString(descriptionDivs.get(0)));
         }
 
         String divContent = OneGroupContentParser.pickContent(jdParameters.getPositionDivPattern(), pageContent);
