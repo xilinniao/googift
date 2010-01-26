@@ -100,7 +100,8 @@ public class Product implements Serializable {
 		this.category = getCategoryFromCategories();
 	}
 
-	private List<String> categories;
+    
+    private List<String> categories;
 	
     public Product() {
     }
@@ -216,7 +217,8 @@ public class Product implements Serializable {
 	
 	public String getCategoryFromCategories()
 	{
-		String s = StringUtils.replace(categories.toString(), ", ", "|");  
+        if(null == categories) return null;
+        String s = StringUtils.replace(categories.toString(), ", ", "|");
 		s = StringUtils.replace(s, "[",  "");
 		s = StringUtils.replace(s, "]", "");
 		return s;
