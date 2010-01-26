@@ -1,4 +1,3 @@
-<%@ page import="org.apache.openjpa.persistence.criteria.Expressions" %>
 <%@page language="java" pageEncoding="UTF-8" %>
 <%@page import="cn.googift.crawler.data.*, java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +43,7 @@
 	<div class="giftPrice">价格：<%= p.getDiscountPrice()%></div>
     <div><%= p.getDescription()%></div>
 </div>
-
+<% } %>
 <div>
 
 </div>
