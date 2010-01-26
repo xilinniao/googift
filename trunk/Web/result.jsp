@@ -1,4 +1,6 @@
+<%@ page import="org.apache.openjpa.persistence.criteria.Expressions" %>
 <%@page language="java" pageEncoding="UTF-8" %>
+<%@page import="cn.googift.crawler.data.*, java.util.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,19 +27,22 @@
 		</div>
 	</div>
 </div>
-
+<%
+    List<Product> results = (List<Product>) request.getAttribute("results");
+%>
 <div id="divider">
 	<div id="searchSummary">
-		搜索&nbsp;&nbsp;获得约&nbsp; 20 &nbsp;条查询结果
+		搜索&nbsp;&nbsp;获得约&nbsp; <%= results.size() %> &nbsp;条查询结果
 	</div>
 </div>
-
+<% for(Product p : results) { %>
 <div class="giftItem">
 	<div class="giftPic">
 
 	</div>
-	<div class="giftTitle"></div>
-	<div class="giftPrice">价格：</div>
+	<div class="giftTitle"><%= p.getName()%></div>
+	<div class="giftPrice">价格：<%= p.getDiscountPrice()%></div>
+    <div><%= p.getDescription()%></div>
 </div>
 
 <div>
