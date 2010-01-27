@@ -76,12 +76,12 @@ body {
 .giftItem {
 	width: 700px;
 	font-size: small;
+    margin-left:10px;
+    margin-bottom:40px;
 }
 
 .giftPic {
 	float: left;
-	width: 100px;
-	height: 120px;
 }
 
 .giftTitle {
@@ -92,4 +92,13 @@ body {
 .giftPrice {
 	margin-top: 5px;
 	font-weight: bold;
+}
+
+.giftSnippet {
+	margin-top: 5px;
+}
+
+.giftUrl {
+    color:cadetblue;
+    margin-top: 5px;
 }
