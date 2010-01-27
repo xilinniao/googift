@@ -22,16 +22,16 @@ public class HTMLHelper {
     }
 
     public static String htmlToString(String html) {
-        String noHTMLString = html.replaceAll("\\<.*?\\>", "");
-        noHTMLString = noHTMLString.replace("&lt;", "<");
-        noHTMLString = noHTMLString.replace("&gt;", ">");
-        noHTMLString = noHTMLString.replace("&amp;", "&");
-        noHTMLString = noHTMLString.replace("&quot;", "\"");
+        String noHTMLString = html.replaceAll("\\<.*?\\>", "&nbsp;");
+//        noHTMLString = noHTMLString.replace("&lt;", "<");
+//        noHTMLString = noHTMLString.replace("&gt;", ">");
+//        noHTMLString = noHTMLString.replace("&amp;", "&");
+//        noHTMLString = noHTMLString.replace("&quot;", "\"");
 //        noHTMLString = noHTMLString.replace("&reg;", "®");
 //        noHTMLString = noHTMLString.replace("&trade;", "™");
 //        noHTMLString = noHTMLString.replace("&ensp;", " "); //半个空白位
 //        noHTMLString = noHTMLString.replace("&emsp;", " "); //一个空白位
-        noHTMLString = noHTMLString.replace("&nbsp;", " ");
+//        noHTMLString = noHTMLString.replace("&nbsp;", " ");
         return noHTMLString;
     }
 

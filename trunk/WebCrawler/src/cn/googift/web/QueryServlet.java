@@ -1,6 +1,7 @@
 package cn.googift.web;
 
 import cn.googift.search.Searcher;
+import cn.googift.search.SearchResult;
 import cn.googift.crawler.data.Product;
 
 import javax.servlet.RequestDispatcher;
@@ -16,9 +17,11 @@ public class QueryServlet extends HttpServlet {
     protected void doGet(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("result.jsp");
         String q = httpServletRequest.getParameter("q");
-        System.out.println("q = " + q);
-        List<Product> products = searcher.search(q, 0, 10);
+        List<SearchResult> products = searcher.search(q, 0, 10);
+        
         httpServletRequest.setAttribute("results", products);
+        httpServletRequest.setAttribute("q", q);
+        httpServletRequest.setAttribute("totalHits", 10);
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }

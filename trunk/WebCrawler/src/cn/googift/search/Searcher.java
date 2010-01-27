@@ -1,6 +1,5 @@
 package cn.googift.search;
 
-import cn.googift.crawler.data.Product;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.RAMDirectory;
 
@@ -21,12 +20,12 @@ public class Searcher {
         }
     }
 
-    public List<Product> search(String q, int start, int count) {
+    public List<SearchResult> search(String q, int start, int count) {
         try {
             return searchHelper.singleQuery(q);
         } catch (IOException e) {
             e.printStackTrace();
-            return new ArrayList<Product>(0);
+            return new ArrayList<SearchResult>(0);
         }
     }
 }
