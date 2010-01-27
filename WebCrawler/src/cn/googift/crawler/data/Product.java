@@ -1,19 +1,13 @@
 package cn.googift.crawler.data;
 
-import java.io.Serializable;
-import java.lang.reflect.InvocationTargetException;
-import java.sql.Timestamp;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
-import javax.persistence.Version;
-
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang.StringUtils;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.sql.Timestamp;
+import java.util.Arrays;
+import java.util.List;
 
 
 /**
@@ -61,7 +55,7 @@ public class Product implements Serializable {
 
 	public void setResouceLink(String resouceLink) {
 		this.resouceLink = resouceLink;
-	}
+    }
 
 	public String getCategory() {
 		return category;
@@ -83,7 +77,8 @@ public class Product implements Serializable {
 	private List<String> picLinks;
 	
     public List<String> getPicLinks() {
-		return picLinks;
+        if(null == picLinks && resouceLink != null) picLinks = getPicLinksFromResLink();
+        return picLinks;
 	}
 
 	public void setPicLinks(List<String> picLinks) {
@@ -214,8 +209,12 @@ public class Product implements Serializable {
 		s = StringUtils.replace(s, "]", "");
 		return s;
 	}
-	
-	public String getCategoryFromCategories()
+
+    private List<String> getPicLinksFromResLink() {
+        return Arrays.asList(resouceLink.split(" "));
+    }
+
+    public String getCategoryFromCategories()
 	{
         if(null == categories) return null;
         String s = StringUtils.replace(categories.toString(), ", ", "|");
