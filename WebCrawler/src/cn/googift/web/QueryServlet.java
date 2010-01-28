@@ -1,5 +1,6 @@
 package cn.googift.web;
 
+import cn.googift.search.SearchResult;
 import cn.googift.search.Searcher;
 import cn.googift.crawler.data.Product;
 
@@ -17,7 +18,7 @@ public class QueryServlet extends HttpServlet {
         RequestDispatcher requestDispatcher = httpServletRequest.getRequestDispatcher("result.jsp");
         String q = httpServletRequest.getParameter("q");
         System.out.println("q = " + q);
-        List<Product> products = searcher.search(q, 0, 10);
+        List<SearchResult> products = searcher.search(q, 0, 10);
         httpServletRequest.setAttribute("results", products);
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
