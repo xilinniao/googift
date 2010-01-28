@@ -20,6 +20,8 @@ public class QueryServlet extends HttpServlet {
         System.out.println("q = " + q);
         List<SearchResult> products = searcher.search(q, 0, 10);
         httpServletRequest.setAttribute("results", products);
+        httpServletRequest.setAttribute("q", q);
+        httpServletRequest.setAttribute("totalHits", 10);
         requestDispatcher.forward(httpServletRequest, httpServletResponse);
     }
 }
