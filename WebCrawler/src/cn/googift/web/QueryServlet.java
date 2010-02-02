@@ -17,19 +17,20 @@ public class QueryServlet extends HttpServlet {
         boolean advanced = (httpServletRequest.getParameter("advanced") != null);
         int totalNum;
         String q;
-        System.out.println("advanced = " + advanced);
         if (advanced) {
             String name = httpServletRequest.getParameter("name");
             String lowPrice = httpServletRequest.getParameter("lowPrice");
             String highPrice = httpServletRequest.getParameter("highPrice");
             String keyword = httpServletRequest.getParameter("keyword");
             totalNum = searcher.search(name, lowPrice, highPrice, keyword);
-            q = name != null ? name : keyword;
+            q = "";
+            if(null != name) q += name;
+            if(q.length() > 0) q += " ";
+            if(null != keyword) q += keyword;
         } else {
             q = httpServletRequest.getParameter("q");
             totalNum = searcher.search(q);
         }
-
         httpServletRequest.setAttribute("q", q);
         httpServletRequest.setAttribute("totalHits", totalNum);
         httpServletRequest.setAttribute("searcher", searcher);
