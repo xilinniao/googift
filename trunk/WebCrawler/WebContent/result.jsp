@@ -64,7 +64,7 @@
     if(null != picLinks && picLinks.size() > 0) {
     for(String l : picLinks) {
     %>
-    <span class="giftPic"><a href="<%=l%>" target="_blank"><img src="<%=l%>" height="100px" width="120px" border="1" alt="./img/noValidPic.jpg"/></a> </span>
+    <span class="giftPic"><a href="<%=l%>" target="_blank"><img src="<%=l%>" height="100px" width="120px" border="1" alt="商品图片" onerror = "this.src='img/noValidPic.jpg'"/></a> </span>
 
     <% } } %>
     </td></tr>

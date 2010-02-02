@@ -1,6 +1,7 @@
 package cn.googift.search;
 
 import cn.googift.crawler.data.Product;
+import cn.googift.crawler.util.parser.PriceHandler;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.CorruptIndexException;
 import org.apache.lucene.search.*;
@@ -57,7 +58,7 @@ public class SearchHelper {
         this.hitsPerPage = hitsPerPage;
         if(null != name) this.keyword = name;
         else this.keyword = keyword;
-        Filter filter = new TermRangeFilter(SearchConstants.FielName_PRICE, NumericUtils.floatToPrefixCoded(Float.parseFloat(lowPrice)), NumericUtils.floatToPrefixCoded(Float.parseFloat(highPrice)), true, true);
+        Filter filter = new TermRangeFilter(SearchConstants.FielName_PRICE, PriceHandler.toIndexStandardFormat(lowPrice), PriceHandler.toIndexStandardFormat(highPrice), true, true);
         query = IKQueryParser.parseMultiField(new String[]{SearchConstants.FielName_NAME, SearchConstants.FielName_DESCRIPTION}, new String[]{name, keyword});
         numTotalHits = search(10 * hitsPerPage, filter);
         System.out.println("numTotalHits = " + numTotalHits);

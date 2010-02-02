@@ -11,15 +11,15 @@ import java.util.List;
 
 public class Searcher {
     public static final int hitsPerPage = 10;
-//    private Directory indexDir = new RAMDirectory();
-    private Directory indexDir;
+    private Directory indexDir = new RAMDirectory();
+//    private Directory indexDir;
     private IndexHelper indexHelper = new IndexHelper();
     private SearchHelper searchHelper;
 
     public Searcher() {
         try {
-            System.out.println("Searcher.Searcher");
-            indexDir = FSDirectory.open(new File("c:\\_index"));
+//            System.out.println("Searcher.Searcher");
+//            indexDir = FSDirectory.open(new File("c:\\_index"));
             indexHelper.index(indexDir, new DocumentIterator());
             searchHelper = new SearchHelper(indexDir);
         } catch (IOException e) {
