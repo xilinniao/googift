@@ -1,17 +1,16 @@
 package cn.googift.crawler.data;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-
 import junit.framework.TestCase;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ProductTest extends TestCase {
 	Product p;
 	List<String> categories;
-	List<String> resLinks;
+	Map<String, String> resLinks;
 	
 	public void setUp()
 	{
@@ -21,20 +20,20 @@ public class ProductTest extends TestCase {
 		categories.add("aa2");
 		categories.add("aa3");
 		p.setCategories(categories);
-		
-		
-		resLinks = new LinkedList<String>();
-		resLinks.add("http://www.baidu.com");
-		resLinks.add("http://www.google.com");
-		resLinks.add("http://www.aaa.com");
+
+
+		resLinks = new HashMap<String, String>();
+		resLinks.put("http://www.baidu.com/little", "http://www.baidu.com/little");
+		resLinks.put("http://www.google.com/little", "http://www.google.com/little");
+		resLinks.put("http://www.aaa.com/little", "http://www.aaa.com/little");
 		p.setPicLinks(resLinks);
 	}
-	
+
 	public void testGetResLink()
 	{
-		System.out.println(p.getResLinkFromResLinks());
+		System.out.println(p.getPicLinks());
 	}
-	
+
 	public void testGetCategory()
 	{
 		System.out.println(p.getCategoryFromCategories());
