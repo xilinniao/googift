@@ -8,8 +8,9 @@ import cn.googift.crawler.util.parser.HTMLHelper;
 import cn.googift.crawler.util.parser.OneGroupContentParser;
 import cn.googift.crawler.util.parser.PriceHandler;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NewEggPageParser extends PageParser {
     private final NewEggSite site;
@@ -46,12 +47,12 @@ public class NewEggPageParser extends PageParser {
         return !page.getContent().contains("<body id=\"Search\">");
     }
 
-    private List<String> parsePicLinks(NewEggParameters jdP, String pageContent) {
+    private Map<String, String> parsePicLinks(NewEggParameters jdP, String pageContent) {
         List<String> littlePicLinks = OneGroupContentParser.pickMultipleOccurs(jdP.getPictureLittleImageLinkPattern(), pageContent);
         if (null != littlePicLinks) {
-            List<String> picLinks = new ArrayList<String>(littlePicLinks.size());
+            Map<String, String> picLinks = new HashMap<String, String>();
             for (String link : littlePicLinks) {
-                picLinks.add(link.replace("P40", "mpic"));
+                picLinks.put(link, link.replace("P40", "mpic"));
             }
             return picLinks;
         }
