@@ -10,6 +10,7 @@ import javax.persistence.Persistence;
 import cn.googift.crawler.service.ProductService;
 import cn.googift.crawler.sites.jingdong.JDSite;
 import cn.googift.crawler.sites.newegg.NewEggSite;
+import cn.googift.crawler.sites.dangdang.DDSite;
 import junit.framework.TestCase;
 
 public class SiteFactoryTest extends TestCase {
@@ -21,6 +22,7 @@ public class SiteFactoryTest extends TestCase {
    Map<String, Site> sites;
    Site JDSite;
    Site NewEggSite;
+   Site DDSite;
    
    public void setUp()
    {
@@ -30,10 +32,12 @@ public class SiteFactoryTest extends TestCase {
         
 	   JDSite = new JDSite();
 	   NewEggSite = new NewEggSite();
+	   DDSite = new DDSite();
 	   sites = new HashMap<String, Site>();
 	   sites.put(JDSite.getDomain(), JDSite);
 	   sites.put(NewEggSite.getDomain(), NewEggSite);
-   }   
+	   sites.put(DDSite.getDomain(), DDSite);
+   }
 	
 
 	protected void tearDown() throws Exception {
