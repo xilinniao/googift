@@ -66,7 +66,7 @@
     if(null != picLinks && picLinks.size() > 0) {
     for(Map.Entry<String, String> p : picLinks.entrySet()) {
     %>
-    <span class="giftPic"><a href="<%=p.getValue()%>" target="_blank"><img src="<%=p.getKey()%>" height="100px" width="120px" border="1" alt="商品图片" onerror = "this.src='img/noValidPic.jpg'"/></a> </span>
+    <span class="giftPic"><a href="<%=p.getValue()%>" target="_blank"><img src="<%=p.getKey()%>" height="100px" border="1" alt="商品图片" onerror = "this.src='img/noValidPic.jpg'"/></a> </span>
 
     <% } } %>
     </td></tr>
