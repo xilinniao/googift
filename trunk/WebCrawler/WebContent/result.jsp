@@ -1,5 +1,7 @@
 <%@page language="java" pageEncoding="UTF-8" %>
-<%@page import="cn.googift.search.*, java.util.*" %>
+<%@page import="cn.googift.search.SearchResult, cn.googift.search.Searcher" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.Map" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -60,11 +62,11 @@
     <tr><td class="giftPrice"><b>价格：</b><%= r.getProduct().getDiscountPrice()==null?"空缺":r.getProduct().getDiscountPrice()%></td></tr>
     <tr><td class="giftTitle">
     <%
-    List<String> picLinks = r.getProduct().getPicLinks();
+    Map<String, String> picLinks = r.getProduct().getPicLinks();
     if(null != picLinks && picLinks.size() > 0) {
-    for(String l : picLinks) {
+    for(Map.Entry<String, String> p : picLinks.entrySet()) {
     %>
-    <span class="giftPic"><a href="<%=l%>" target="_blank"><img src="<%=l%>" height="100px" width="120px" border="1" alt="商品图片" onerror = "this.src='img/noValidPic.jpg'"/></a> </span>
+    <span class="giftPic"><a href="<%=p.getValue()%>" target="_blank"><img src="<%=p.getKey()%>" height="100px" width="120px" border="1" alt="商品图片" onerror = "this.src='img/noValidPic.jpg'"/></a> </span>
 
     <% } } %>
     </td></tr>
