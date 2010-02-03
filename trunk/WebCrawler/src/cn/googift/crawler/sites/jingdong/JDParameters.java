@@ -38,6 +38,10 @@ public class JDParameters {
         return parameterProp.getProperty("productImagePrefix") + imageName;
     }
 
+    public String getProductLittleImageLink(String imageName) {
+        return parameterProp.getProperty("productLittleImagePrefix") + imageName;
+    }
+
     public String getPositionDivPattern() {
         return parameterProp.getProperty("positionDivPattern");
     }
